@@ -1,0 +1,109 @@
+.MainDiv {
+	display: flex;
+	height: 52px;
+	align-items: center;
+}
+.RegionDiv {
+	height: 32px;
+	display: flex;
+	margin-right: 29px;
+	margin-left: 29px;
+	align-items: center;
+}
+
+.BurgerMenu {
+	display: flex;
+	margin-right: 29px;
+}
+.BurgerMenu > button {
+	background: none;
+	border: none;
+	padding: 0;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.BurgerMenu > button > img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+.BurgerMenu > h2 {
+	color: #000;
+	font-family: Inter;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	text-transform: uppercase;
+	width: 183px;
+}
+.NewAdd {
+	width: 196px;
+	height: 45px;
+	flex-shrink: 0;
+	border-radius: 7px;
+	background: #6a6a6a;
+	color: #fff;
+	text-align: center;
+	font-family: Inter;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	border: 0px;
+	margin: 0 29px;
+}
+.signInIp {
+	background: none;
+	border: none;
+	padding: 0;
+	color: #000;
+	text-align: center;
+	font-family: Inter;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	text-decoration-line: underline;
+}
+.signInIpP {
+	color: #000;
+	font-family: Inter;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	margin: 0px 6px;
+}
+.searchContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+}
+
+.searchInput {
+	width: 240px;
+	height: 39px;
+	background-color: #d9d9d9;
+	border: 0;
+	text-align: center;
+	font-size: 14px;
+}
+
+.searchButton {
+	width: 51px;
+	height: 41px;
+	flex-shrink: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #6a6a6a;
+	border: 0px;
+	border-radius: 0px 20px 20px 0px;
+	padding: 5px 10px;
+	font-size: 14px;
+}
+.signInIpDiv {
+	display: flex;
+}

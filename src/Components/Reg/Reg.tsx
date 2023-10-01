@@ -1,24 +1,36 @@
 import RegFirst from './RegFirst'
 import { RegSecond } from './RegSecond'
 import RegThird from './RegThird'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
 import Modal from './Modal'
 import Auth from './Auth'
+type RegProps = {
+	modalType: 'auth' | 'reg' | ''
+	isOpen: boolean
+	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+const Reg: React.FC<RegProps> = (props: RegProps) => {
+	const [stage, setStage] = useState(1)
+	const [email, setEmail] = useState('')
 
-const Reg: React.FC = () => {
-	const [stage, setStage] = useState(1);
-	const [email, setEmail] = useState('');
-	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('');
-	const [isOpen, setIsOpen] = useState(false);
-	const [isLegalEntity, setIsLegalEntity] = useState<'Физическое лицо' | 'Юридическое лицо'>('Физическое лицо');
+	const [isLegalEntity, setIsLegalEntity] = useState<
+		'Физическое лицо' | 'Юридическое лицо'
+	>('Физическое лицо')
+	useEffect(() => {
+		console.log(props.isOpen)
+	}, [])
 
 	return (
 		<>
-			<button onClick={() => { setModalType('auth'); setIsOpen(true); }}>Авторизация</button>
-			<button onClick={() => { setModalType('reg'); setIsOpen(true); }}>Регистрация</button>
-			<Modal isOpen={isOpen} closeModal={() => setIsOpen(false)}>
-				{modalType === 'auth' && <Auth />}
-				{modalType === 'reg' && (
+			{/* <button onClick={() => { setModalType('auth'); setIsOpen(true); }}>Авторизация</button>
+			<button onClick={() => { setModalType('reg'); setIsOpen(true); }}>Регистрация</button> */}
+			<Modal
+				isOpen={props.isOpen}
+				closeModal={() => props.setIsOpen(false)}
+			>
+				{props.modalType === 'auth' && <Auth />}
+				{props.modalType === 'reg' && (
 					<>
 						{stage === 1 && (
 							<RegFirst
