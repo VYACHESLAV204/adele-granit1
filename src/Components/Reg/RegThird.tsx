@@ -1,4 +1,6 @@
 import styles from './Reg.module.css'
+import React, { useState } from 'react'
+
 type RegPropsThird = {
 	stage: number
 	setStage: React.Dispatch<React.SetStateAction<number>>
@@ -9,7 +11,29 @@ type RegPropsThird = {
 		React.SetStateAction<'Физическое лицо' | 'Юридическое лицо'>
 	>
 }
-const RegThird = (props: RegPropsThird) => {
+
+const RegThird: React.FC<RegPropsThird> = (props) => {
+	const [state, setState] = useState({
+		email: props.email,
+		subject: props.isLegalEntity,
+		name_profile: '',
+		phone: '',
+		password: '',
+		inn: null,
+	})
+
+	function updateField(fieldName: string, newValue: string | number) {
+		setState((prevState) => ({ ...prevState, [fieldName]: newValue }))
+	}
+	function SendData() {
+		fetch('http://192.168.1.71:6969/api/v1/last-check-in', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ state }),
+		})
+	}
 	return (
 		<div className={styles.MainDivFirstPopUp}>
 			<h2 className={styles.H2text}>Регистрация</h2>
@@ -46,18 +70,21 @@ const RegThird = (props: RegPropsThird) => {
 						type='text'
 						placeholder='Имя профиля'
 						required
+						onChange={(e) => updateField('name_profile',e.target.value)}
 					/>
 					<input
 						className={styles.InputEmail}
 						type='number'
 						placeholder='Телефон'
 						required
+						onChange={(e) => updateField('phone',e.target.value)}
 					/>
 					<input
 						className={styles.InputEmail}
 						type='password'
 						placeholder='Пароль'
 						required
+						onChange={(e) => updateField('password',e.target.value)}
 					/>
 					{props.isLegalEntity === 'Юридическое лицо' && (
 						<input
@@ -65,10 +92,11 @@ const RegThird = (props: RegPropsThird) => {
 							type='number'
 							className={styles.InputEmail}
 							placeholder='ИНН'
+							onChange={(e) => updateField('inn',parseInt(e.target.value))}
 						/>
 					)}
 				</div>
-				<button className={styles.Continue}>Продолжить</button>
+				<button onClick={SendData} className={styles.Continue}>Продолжить</button>
 			</form>
 		</div>
 	)

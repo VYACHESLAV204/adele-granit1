@@ -2,27 +2,18 @@ import styles from './Header.module.css'
 import { useState } from 'react'
 import Select from 'react-select'
 type HeaderProps = {
-	
-	setModalType: React.Dispatch<React.SetStateAction<'auth' | 'reg' | ''>>;
+	setModalType: React.Dispatch<React.SetStateAction<'auth' | 'reg' | ''>>
+	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+	citys: { label: string; value: string }[]
+}
 
-	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-  
-  const Header: React.FC<HeaderProps> = ({  setModalType, setIsOpen }) => {
+const Header: React.FC<HeaderProps> = ({ setModalType, setIsOpen, citys }) => {
 	type OptionType = { label: string; value: string }
 
 	function RegionSelect() {
-		const regions: OptionType[] = [
-			{ label: 'Москва', value: 'Москва' },
-			{ label: 'Санкт-Петербург', value: 'Санкт-Петербург' },
-			{ label: 'Новосибирск', value: 'Новосибирск' },
-			{ label: 'Казань', value: 'Казань' },
-			{ label: 'Екатеринбург', value: 'Екатеринбург' },
-		]
-
 		// Состояние для выбранного региона
 		const [selectedRegion, setSelectedRegion] = useState<OptionType>(
-			regions[0]
+			citys[0]
 		)
 
 		const handleChange = (
@@ -39,8 +30,14 @@ type HeaderProps = {
 
 				<Select
 					value={selectedRegion}
-					options={regions}
+					options={citys}
 					onChange={handleChange}
+					styles={{
+						control: (base) => ({
+							...base,
+							width: 160, // Устанавливаем заданную ширину
+						}),
+					}}
 				/>
 			</div>
 		)
@@ -62,17 +59,33 @@ type HeaderProps = {
 					className={styles.searchInput}
 					placeholder='Поиск объявления'
 				/>
-				<button className={styles.searchButton}><img src="src\assets\lens.svg" alt="" /></button>
+				<button className={styles.searchButton}>
+					<img src='src\assets\lens.svg' alt='' />
+				</button>
 			</div>
 			<div>
 				<button className={styles.NewAdd}>Разместить обьявление</button>
 			</div>
 			<div className={styles.signInIpDiv}>
-				
-				<button className={styles.signInIp} onClick={() => { setModalType('auth'); setIsOpen(true); }}>Вход</button>
+				<button
+					className={styles.signInIp}
+					onClick={() => {
+						setModalType('auth')
+						setIsOpen(true)
+					}}
+				>
+					Вход
+				</button>
 				<p className={styles.signInIpP}>и</p>
-			<button className={styles.signInIp} onClick={() => { setModalType('reg'); setIsOpen(true); }}>Регистрация</button>
-				
+				<button
+					className={styles.signInIp}
+					onClick={() => {
+						setModalType('reg')
+						setIsOpen(true)
+					}}
+				>
+					Регистрация
+				</button>
 			</div>
 		</div>
 	)

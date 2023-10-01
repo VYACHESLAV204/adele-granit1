@@ -6,6 +6,15 @@ type RegPropsFirst = {
 	setEmail: React.Dispatch<React.SetStateAction<string>>
 }
 const RegFirst = (props: RegPropsFirst) => {
+	function SendMail() {
+		fetch('http://192.168.1.71:6969/api/v1/send-mail', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ email: props.email }),
+		})
+	}
 	return (
 		<div className={styles.MainDivFirstPopUp}>
 			<div className={styles.innerDiv}>
@@ -23,7 +32,12 @@ const RegFirst = (props: RegPropsFirst) => {
 						placeholder='info@infomail.ru'
 						required
 					/>
-					<button className={styles.Continue}>Продолжить</button>
+					<button
+						onClick={() => SendMail()}
+						className={styles.Continue}
+					>
+						Продолжить
+					</button>
 				</form>
 			</div>
 		</div>

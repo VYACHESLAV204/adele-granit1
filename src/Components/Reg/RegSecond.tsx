@@ -1,4 +1,5 @@
 import styles from './Reg.module.css'
+import { useState } from 'react'
 type RegPropsSecond = {
 	stage: number
 	setStage: React.Dispatch<React.SetStateAction<number>>
@@ -6,6 +7,16 @@ type RegPropsSecond = {
 	setEmail: React.Dispatch<React.SetStateAction<string>>
 }
 export const RegSecond = (props: RegPropsSecond) => {
+	const [pass, setPass] = useState('')
+	function CheakPass() {
+		fetch('http://192.168.1.71:6969/api/v1/check-code', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ email: props.email,code:pass }),
+		})
+	}
 	return (
 		<div className={styles.MainDivFirstPopUp}>
 			<div className={styles.innerDiv}>
@@ -24,9 +35,10 @@ export const RegSecond = (props: RegPropsSecond) => {
 						className={styles.InputEmail}
 						type='text'
 						required
+						onChange={(e) => setPass(e.target.value)}
 						placeholder='Введите пароль из письма'
 					/>
-					<button className={styles.Continue}>Продолжить</button>
+					<button onClick={() => CheakPass()} className={styles.Continue}>Продолжить</button>
 				</form>
 			</div>
 		</div>
