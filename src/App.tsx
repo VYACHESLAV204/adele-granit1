@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react';
 import './App.css'
 import Header from './Components/Reg/Header/Header.js'
 import Reg from './Components/Reg/Reg.js'
+import Card from './Components/katalog/card.js';
 
 function App() {
 	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('');
@@ -19,6 +20,7 @@ function App() {
 			<div>
 				<Header citys={citys} setModalType={setModalType}  setIsOpen={setIsOpen}/>
 				<Reg modalType={modalType} setIsOpen={setIsOpen} isOpen={isOpen}></Reg>
+				<Card/>
 			</div>
 		</>
 	)
