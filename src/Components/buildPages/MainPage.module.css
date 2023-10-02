@@ -1,0 +1,19 @@
+.MenuDiv {
+	display: flex;
+	width: 910px;
+	height: 129px;
+	align-items: flex-start;
+	gap: 17px;
+}
+.MenuDiv > p {
+	color: #000;
+	text-align: center;
+	font-family: Inter;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+.container {
+	display: flex;
+}
