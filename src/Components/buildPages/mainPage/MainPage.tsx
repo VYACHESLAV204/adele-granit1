@@ -1,25 +1,7 @@
-import Card from '../modules/Card'
+import Card from '../../modules/маленькая карточка/Card'
 import { FC } from 'react'
-
+import { IpropsCard } from '../../interface and types/IpropsCard'
 import s from './MainPage.module.css'
-interface IpropsCard {
-	cardData: {
-		cardsAd: {
-			img: string
-			title: string
-			price: string
-			location: string
-			id: number
-		}[]
-		simpleCard: {
-			id: number
-			img: string
-			title: string
-			price: string
-			location: string
-		}[]
-	}
-}
 const MainPage: FC<IpropsCard> = ({ cardData }) => {
 	const inlineStyles = {
 		border: '3px solid #fff',
@@ -56,14 +38,14 @@ const MainPage: FC<IpropsCard> = ({ cardData }) => {
 			<div>
 				<div className='container'>
 					<div className='row'>
-						<Card cardsAd={cardData.cardsAd} />
+						<Card cardsAd={cardData.cards1} />
 						<Card
 							inlineStyles={inlineStyles}
-							cardsAd={cardData.simpleCard}
+							cardsAd={cardData.cards2}
 						/>
 					</div>
 					<div className='column'>
-						<Card cardsAd={cardData.cardsAd} />
+						<Card cardsAd={cardData.cards1} />
 					</div>
 				</div>
 			</div>

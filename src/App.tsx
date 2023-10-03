@@ -1,111 +1,26 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { ICard } from './Components/modules/маленькая карточка/Card.js'
 
 import './App.css'
-import Header from './Components/Reg/Header/Header.js'
-import Reg from './Components/Reg/Reg.js'
-import MainPage from './Components/buildPages/MainPage.js'
-import CardDetails from './Components/buildPages/cardDetails.js'
+import Header from './Components/buildPages/Header/Header.js'
+import Reg from './Components/modules/авторизация и регистрация/Reg.js'
+import MainPage from './Components/buildPages/mainPage/MainPage.js'
+import CardDetails from './Components/buildPages/cardinner/cardDetails.js'
+import Catalog from './Components/buildPages/catalog/Catalog.js'
 function App() {
 	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('')
 	const [isOpen, setIsOpen] = useState(false)
 	const [citys, setCitys] = useState([])
+	const [cardsArray, setCardsArray] = useState<ICard[]>([])
 	useEffect(() => {
 		fetch('http://192.168.1.71:6969/api/v1/citys')
 			.then((response) => response.json())
 			.then((data) => setCitys(data.city))
+			.catch((error) => console.log(error))
 	}, [])
-	console.log(citys)
-	const cardData = {
-		cardsAd: [
-			{
-				id: 1,
-				img: 'https://picsum.photos/210/168',
-				title: 'Наименование услуги/товара или...',
-				price: '800Р за услугу',
-				location: 'Санкт-Петербург, Адмиралтейская',
-			},
-			{
-				id: 2,
-				img: 'https://picsum.photos/210/168',
-				title: 'Наименование услуги/товара или...',
-				price: '800Р за услугу',
-				location: 'Санкт-Петербург, Адмиралтейская',
-			},
-			{
-				id: 3,
-				img: 'https://picsum.photos/210/168',
-				title: 'Наименование услуги/товара или...',
-				price: '800Р за услугу',
-				location: 'Санкт-Петербург, Адмиралтейская',
-			},
-			{
-				id: 4,
-				img: 'https://picsum.photos/210/168',
-				title: 'Наименование услуги/товара или...',
-				price: '800Р за услугу',
-				location: 'Санкт-Петербург, Адмиралтейская',
-			},
-		],
-		simpleCard: [
-			{
-				id: 5,
-				img: 'https://picsum.photos/210/168',
-				title: 'Наименование услуги/товара или...',
-				price: '800Р за услугу',
-				location: 'Санкт-Петербург, Адмиралтейская',
-			},
-			{
-				id: 6,
-				img: 'https://picsum.photos/210/168',
-				title: 'Наименование услуги/товара или...',
-				price: '800Р за услугу',
-				location: 'Санкт-Петербург, Адмиралтейская',
-			},
-			{
-				id: 7,
-				img: 'https://picsum.photos/210/168',
-				title: 'Наименование услуги/товара или...',
-				price: '800Р за услугу',
-				location: 'Санкт-Петербург, Адмиралтейская',
-			},
-			{
-				id: 8,
-				img: 'https://picsum.photos/210/168',
-				title: 'Наименование услуги/товара или...',
-				price: '800Р за услугу',
-				location: 'Санкт-Петербург, Адмиралтейская',
-			},
-			{
-				id: 9,
-				img: 'https://picsum.photos/210/168',
-				title: 'Наименование услуги/товара или...',
-				price: '800Р за услугу',
-				location: 'Санкт-Петербург, Адмиралтейская',
-			},
-			{
-				id: 10,
-				img: 'https://picsum.photos/210/168',
-				title: 'Наименование услуги/товара или...',
-				price: '800Р за услугу',
-				location: 'Санкт-Петербург, Адмиралтейская',
-			},
-			{
-				id: 11,
-				img: 'https://picsum.photos/210/168',
-				title: 'Наименование услуги/товара или...',
-				price: '800Р за услугу',
-				location: 'Санкт-Петербург, Адмиралтейская',
-			},
-			{
-				id: 12,
-				img: 'https://picsum.photos/210/168',
-				title: 'Наименование услуги/товара или...',
-				price: '800Р за услугу',
-				location: 'Санкт-Петербург, Адмиралтейская',
-			},
-		],
-	}
+	
+	const category = ['Блоки', 'карьеры']
 	return (
 		<Router>
 			<div>
@@ -123,11 +38,21 @@ function App() {
 				<Routes>
 					<Route
 						path='/'
-						element={<MainPage cardData={cardData} />}
+						element={<MainPage cardData= />}
 					/>
 					<Route
 						path='/card/:id'
-						element={<CardDetails cardData={cardData} />}
+						element={<CardDetails cardData= />}
+					/>
+					<Route
+						path='/catalog/'
+						element={
+							<Catalog
+								cardsArray={cardsArray}
+								setCardsArray={setCardsArray}
+								category={category}
+							/>
+						}
 					/>
 				</Routes>
 			</div>
@@ -135,3 +60,4 @@ function App() {
 	)
 }
 export default App
+//Это основной компонент,если хочешь посмотреть какой-то блок,то замени им элемент MainPage Удалив cardData

@@ -1,0 +1,21 @@
+.mainDiv {
+	width: 881px;
+	height: 257px;
+}
+.leftDiv {
+	width: 316px;
+	height: 257px;
+}
+.leftHeaderDiv {
+	height: 163px;
+	width: 257px;
+}
+.leftBottomDiv {
+	width: 316px;
+	height: 93px;
+}
+.rightDiv {
+	width: 529px;
+	height: 236px;
+	margin-left: 36px;
+}

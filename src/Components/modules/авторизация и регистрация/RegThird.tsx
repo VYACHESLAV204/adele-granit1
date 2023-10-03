@@ -33,6 +33,8 @@ const RegThird: React.FC<RegPropsThird> = (props) => {
 			},
 			body: JSON.stringify({ state }),
 		})
+			.then(() => props.setStage(props.stage + 1))
+			.catch((Error) => alert(Error))
 	}
 	return (
 		<div className={styles.MainDivFirstPopUp}>
@@ -40,7 +42,6 @@ const RegThird: React.FC<RegPropsThird> = (props) => {
 			<form
 				onSubmit={(e) => {
 					e.preventDefault()
-					props.setStage(props.stage + 1)
 				}}
 			>
 				<div className={styles.selectDiv}>
@@ -70,21 +71,25 @@ const RegThird: React.FC<RegPropsThird> = (props) => {
 						type='text'
 						placeholder='Имя профиля'
 						required
-						onChange={(e) => updateField('name_profile',e.target.value)}
+						onChange={(e) =>
+							updateField('name_profile', e.target.value)
+						}
 					/>
 					<input
 						className={styles.InputEmail}
 						type='number'
 						placeholder='Телефон'
 						required
-						onChange={(e) => updateField('phone',e.target.value)}
+						onChange={(e) => updateField('phone', e.target.value)}
 					/>
 					<input
 						className={styles.InputEmail}
 						type='password'
 						placeholder='Пароль'
 						required
-						onChange={(e) => updateField('password',e.target.value)}
+						onChange={(e) =>
+							updateField('password', e.target.value)
+						}
 					/>
 					{props.isLegalEntity === 'Юридическое лицо' && (
 						<input
@@ -92,11 +97,15 @@ const RegThird: React.FC<RegPropsThird> = (props) => {
 							type='number'
 							className={styles.InputEmail}
 							placeholder='ИНН'
-							onChange={(e) => updateField('inn',parseInt(e.target.value))}
+							onChange={(e) =>
+								updateField('inn', parseInt(e.target.value))
+							}
 						/>
 					)}
 				</div>
-				<button onClick={SendData} className={styles.Continue}>Продолжить</button>
+				<button onClick={SendData} className={styles.Continue}>
+					Продолжить
+				</button>
 			</form>
 		</div>
 	)

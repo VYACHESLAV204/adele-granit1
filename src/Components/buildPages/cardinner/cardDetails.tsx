@@ -1,30 +1,17 @@
 import { FC } from 'react'
 import { useParams } from 'react-router-dom'
-
-interface IpropsCard {
-	cardData: {
-		cardsAd: {
-			img: string
-			title: string
-			price: string
-			location: string
-			id?: number
-		}[]
-		simpleCard: {
-			id?: number
-			img: string
-			title: string
-			price: string
-			location: string
-		}[]
-	}
-}
+import { IpropsCard } from '../../interface and types/IpropsCard'
 
 const CardDetails: FC<IpropsCard> = ({ cardData }) => {
-	const { id } = useParams<{ id: string }>() // Add type assertion here
+	const { id } = useParams<{ id: string }>() // Keep it as string
 
-	const thisCardFromAd = cardData.cardsAd.find((card) => card.id == id) // Use id1 here which is a number
-	const thisCardFromSimple = cardData.simpleCard.find((card) => card.id == id) // Use id1 here which is a number
+	const numberId = Number(id) // convert string id to numaric id
+
+	const thisCardFromAd = cardData.cards1.find((card) => card.id === numberId)
+	const thisCardFromSimple = cardData.cards2.find(
+		(card) => card.id === numberId
+	)
+
 	console.log(thisCardFromAd, thisCardFromSimple)
 
 	function returnActual() {
@@ -49,3 +36,4 @@ const CardDetails: FC<IpropsCard> = ({ cardData }) => {
 }
 
 export default CardDetails
+//Тут внутренняя страница обьявления

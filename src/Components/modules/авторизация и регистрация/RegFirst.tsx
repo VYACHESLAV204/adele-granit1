@@ -14,6 +14,8 @@ const RegFirst = (props: RegPropsFirst) => {
 			},
 			body: JSON.stringify({ email: props.email }),
 		})
+		.then(() => props.setStage(props.stage +1))
+		.catch((Error) => alert(Error))
 	}
 	return (
 		<div className={styles.MainDivFirstPopUp}>
@@ -22,7 +24,7 @@ const RegFirst = (props: RegPropsFirst) => {
 				<form
 					onSubmit={(e) => {
 						e.preventDefault()
-						props.setStage(props.stage + 1)
+					
 					}}
 				>
 					<input

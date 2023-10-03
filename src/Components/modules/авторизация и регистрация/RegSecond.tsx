@@ -14,8 +14,10 @@ export const RegSecond = (props: RegPropsSecond) => {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ email: props.email,code:pass }),
+			body: JSON.stringify({ email: props.email, code: pass }),
 		})
+			.then(() => props.setStage(props.stage + 1))
+			.catch((Error) => alert(Error))
 	}
 	return (
 		<div className={styles.MainDivFirstPopUp}>
@@ -28,7 +30,6 @@ export const RegSecond = (props: RegPropsSecond) => {
 				<form
 					onSubmit={(e) => {
 						e.preventDefault()
-						props.setStage(props.stage + 1)
 					}}
 				>
 					<input
@@ -38,7 +39,12 @@ export const RegSecond = (props: RegPropsSecond) => {
 						onChange={(e) => setPass(e.target.value)}
 						placeholder='Введите пароль из письма'
 					/>
-					<button onClick={() => CheakPass()} className={styles.Continue}>Продолжить</button>
+					<button
+						onClick={() => CheakPass()}
+						className={styles.Continue}
+					>
+						Продолжить
+					</button>
 				</form>
 			</div>
 		</div>

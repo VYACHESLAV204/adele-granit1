@@ -1,7 +1,7 @@
 import RegFirst from './RegFirst'
 import { RegSecond } from './RegSecond'
 import RegThird from './RegThird'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import Modal from './Modal'
 import Auth from './Auth'
@@ -17,9 +17,6 @@ const Reg: React.FC<RegProps> = (props: RegProps) => {
 	const [isLegalEntity, setIsLegalEntity] = useState<
 		'Физическое лицо' | 'Юридическое лицо'
 	>('Физическое лицо')
-	useEffect(() => {
-		console.log(props.isOpen)
-	}, [])
 
 	return (
 		<>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import styles from './card.module.css'
 import { FC } from 'react'
 
-interface Card {
+export interface ICard {
 	img: string
 	title: string
 	price: string
@@ -10,7 +10,7 @@ interface Card {
 	id: number
 }
 
-const Card: FC<{ cardsAd: Card[]; inlineStyles?: Record<string, string> }> = ({
+const Card: FC<{ cardsAd: ICard[]; inlineStyles?: Record<string, string> }> = ({
 	cardsAd,
 	inlineStyles,
 }) => {
