@@ -1,6 +1,11 @@
 import styles from './Header.module.css'
 import { useState } from 'react'
 import Select from 'react-select'
+import Menu from '../../modules/Меню/Menu'
+import logo from '../../../assets/logo.svg'
+import geoForHeader from '../../../assets/geoForHeader.svg'
+import HeaderMenu3Line from '../../../assets/HeaderMenu3Line.svg'
+import InputButton from '../../modules/Поиск в шапке/Search'
 type HeaderProps = {
 	setModalType: React.Dispatch<React.SetStateAction<'auth' | 'reg' | ''>>
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -8,6 +13,7 @@ type HeaderProps = {
 }
 
 const Header: React.FC<HeaderProps> = ({ setModalType, setIsOpen, citys }) => {
+	const [BurgerisOpen, setBurgerisOpen] = useState(false)
 	type OptionType = { label: string; value: string }
 
 	function RegionSelect() {
@@ -26,8 +32,7 @@ const Header: React.FC<HeaderProps> = ({ setModalType, setIsOpen, citys }) => {
 		}
 		return (
 			<div className={styles.RegionDiv}>
-				<img src='src\assets\geoForHeader.svg' alt='' />
-
+				<img src={geoForHeader} alt='' />
 				<Select
 					value={selectedRegion}
 					options={citys}
@@ -35,6 +40,7 @@ const Header: React.FC<HeaderProps> = ({ setModalType, setIsOpen, citys }) => {
 					styles={{
 						control: (base) => ({
 							...base,
+							marginLeft: 10,
 							width: 160, // Устанавливаем заданную ширину
 						}),
 					}}
@@ -45,23 +51,23 @@ const Header: React.FC<HeaderProps> = ({ setModalType, setIsOpen, citys }) => {
 
 	return (
 		<div className={styles.MainDiv}>
-			<img src='src\assets\logo.svg' alt='Логотип' />
+			<img src={logo} alt='Логотип' />
 			{RegionSelect()}
-			<div className={styles.BurgerMenu}>
+			<div
+				onClick={() => setBurgerisOpen(!BurgerisOpen)}
+				className={styles.BurgerMenu}
+			>
 				<button>
-					<img src='src\assets\HeaderMenu3Line.svg' alt='' />
+					<img src={HeaderMenu3Line} alt='' />
 				</button>
 				<h2>Все категории</h2>
+				<Menu
+					BurgerisOpen={BurgerisOpen}
+					setBurgerIsOpen={setBurgerisOpen}
+				></Menu>
 			</div>
 			<div className={styles.searchContainer}>
-				<input
-					type='text'
-					className={styles.searchInput}
-					placeholder='Поиск объявления'
-				/>
-				<button className={styles.searchButton}>
-					<img src='src\assets\lens.svg' alt='' />
-				</button>
+				<InputButton />
 			</div>
 			<div>
 				<button className={styles.NewAdd}>Разместить обьявление</button>

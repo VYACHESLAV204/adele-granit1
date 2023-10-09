@@ -17,3 +17,45 @@ body {
 	min-width: 320px;
 	min-height: 100vh;
 }
+@font-face {
+	font-family: 'Vela Sans';
+	src: local('VelaSansExtraLight'),
+		url('./fonts/TTF/VelaSans-ExtraLight.ttf') format('truetype');
+	font-weight: 200;
+}
+@font-face {
+	font-family: 'Vela Sans';
+	src: local('VelaSansLight'),
+		url('./fonts/TTF/VelaSans-Light.ttf') format('truetype');
+	font-weight: 300;
+}
+@font-face {
+	font-family: 'Vela Sans';
+	src: local('VelaSansRegular'),
+		url('./fonts/TTF/VelaSans-Regular.ttf') format('truetype');
+	font-weight: 400;
+}
+@font-face {
+	font-family: 'Vela Sans';
+	src: local('VelaSansMedium'),
+		url('./fonts/TTF/VelaSans-Medium.ttf') format('truetype');
+	font-weight: 500;
+}
+@font-face {
+	font-family: 'Vela Sans';
+	src: local('VelaSansSemi-Bold'),
+		url('./fonts/TTF/VelaSans-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+}
+@font-face {
+	font-family: 'Vela Sans';
+	src: local('VelaSansBold'),
+		url('./fonts/TTF/VelaSans-Bold.ttf') format('truetype');
+	font-weight: 700;
+}
+@font-face {
+	font-family: 'Vela Sans';
+	src: local('VelaSansExtraBold'),
+		url('./fonts/TTF/VelaSans-ExtraBold.ttf') format('truetype');
+	font-weight: 800;
+}

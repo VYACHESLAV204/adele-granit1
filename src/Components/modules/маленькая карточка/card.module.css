@@ -1,51 +1,47 @@
 .MainCardDiv {
-	width: 210px;
-	height: 294px;
-	border-radius: 5px;
-	border: 3px solid #000;
-	background: #d9d9d9;
+	width: 191px;
+	height: 299px;
 }
 .CardImgDiv {
-	height: 168px;
-	width: 210px;
+	width: 191px;
+	height: 177px;
+	
 }
+.CardImgDiv > img{border-radius: 5px;}
 .CardInfoDiv {
-	height: 126px;
-	width: 210px;
-	background-color: #6a6a6a;
+	height: 122px;
+	width: 191px;
 	display: flex;
 	padding: 14px 0px;
 	flex-direction: column;
 	align-items: flex-start;
 }
 .CardInfoDiv > h3 {
-	color: #fff;
-	font-family: Inter;
-	width: 181px;
+	width: 156px;
 	text-align: left;
-	font-size: 15px;
-
-	margin: 0px 0px 8px 0px;
-	font-style: normal;
-	font-weight: 500;
-	line-height: normal;
-}
-.CardInfoDivPrice {
-	color: #fff;
-	margin: 0;
-	font-family: Inter;
-	margin: 0px 0px 8px 0px;
+	color: #1c1c85;
+	font-family: Vela Sans;
 	font-size: 15px;
 	font-style: normal;
 	font-weight: 600;
 	line-height: normal;
+	margin: 0px 0px 8px 0px;
+}
+.CardInfoDivPrice {
+	margin: 0px 0px 8px 0px;
+	color: #212121;
+	font-family: Vela Sans;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
 }
 .CardInfoDiv > p:last-child {
-	color: #d8d8d8;
-	font-family: Inter;
+	color: #727272;
+	font-family: Vela Sans;
 	font-size: 13px;
-	margin: 0;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+	margin: 0;
 }

@@ -3,31 +3,33 @@ import styles from './card.module.css'
 import { FC } from 'react'
 
 export interface ICard {
-	img: string
+	info: string
 	title: string
 	price: string
-	location: string
-	id: number
 }
 
-const Card: FC<{ cardsAd: ICard[]; inlineStyles?: Record<string, string> }> = ({
-	cardsAd,
-	inlineStyles,
-}) => {
+const Card: FC<{
+	cardsAd: ICard[]
+	inlineStyles?: Record<string, string>
+	cardsStyles?: Record<string, string>
+}> = ({ cardsAd, inlineStyles,cardsStyles }) => {
 	return (
-		<div>
+		<div style={cardsStyles}>
 			{cardsAd.map((item, index) => (
-				<Link to={`/card/${item.id}`} key={index} style={inlineStyles}>
+				<Link to={`/card/${index}`} key={index} style={inlineStyles}>
 					<div style={inlineStyles} className={styles.MainCardDiv}>
 						<div className={styles.CardImgDiv}>
-							<img src={item.img} alt={item.title} />
+							<img
+								src='https://picsum.photos/191/177'
+								alt={item.title}
+							/>
 						</div>
 						<div className={styles.CardInfoDiv}>
 							<h3>{item.title}</h3>
 							<p className={styles.CardInfoDivPrice}>
 								{item.price}
 							</p>
-							<p>{item.location}</p>
+							<p>{item.price}</p>
 						</div>
 					</div>
 				</Link>
