@@ -1,7 +1,8 @@
 .MainDiv {
 	display: flex;
 	height: 52px;
-	align-items: center;margin-top: 60px;
+	align-items: center;
+	margin-top: 60px;
 }
 .RegionDiv {
 	height: 32px;
@@ -13,42 +14,47 @@
 
 .BurgerMenu {
 	display: flex;
+	align-items: center;
 	margin-right: 29px;
+	width: 212px;
+	height: 39px;
+	border-radius: 6px;
+	background-color: #5250c5;
+	box-shadow: 0px 4px 7px 0px rgba(99, 99, 151, 0.15);
 }
 .BurgerMenu > button {
 	background: none;
 	border: none;
 	padding: 0;
-	margin-right: 10px;
+	margin: 0px 5px;
 	cursor: pointer;
 }
 .BurgerMenu > button > img {
 	display: block;
-	width: 100%;
-	height: auto;
+	width: 32px;
+	height: 18px;
 }
 .BurgerMenu > h2 {
-	color: #000;
-	font-family: Inter;
-	font-size: 18px;
+	color: #fff;
+	font-family: Vela Sans;
+	font-size: 15px;
 	font-style: normal;
-	font-weight: 600;
+	font-weight: 700;
 	line-height: normal;
 	text-transform: uppercase;
-	width: 183px;
 }
 .NewAdd {
 	width: 196px;
 	height: 45px;
-	flex-shrink: 0;
+
 	border-radius: 7px;
-	background: #6a6a6a;
+	background: #5250c5;
 	color: #fff;
 	text-align: center;
-	font-family: Inter;
+	font-family: Vela Sans;
 	font-size: 15px;
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 600;
 	line-height: normal;
 	border: 0px;
 	margin: 0 29px;
@@ -57,9 +63,9 @@
 	background: none;
 	border: none;
 	padding: 0;
-	color: #000;
+	color: #39397f;
 	text-align: center;
-	font-family: Inter;
+	font-family: Vela Sans;
 	font-size: 15px;
 	font-style: normal;
 	font-weight: 600;
@@ -68,7 +74,7 @@
 }
 .signInIpP {
 	color: #000;
-	font-family: Inter;
+	font-family: Vela Sans;
 	font-size: 15px;
 	font-style: normal;
 	font-weight: 400;

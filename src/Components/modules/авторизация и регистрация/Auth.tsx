@@ -1,4 +1,4 @@
-import styles from '../Reg/Reg.module.css'
+import styles from './Reg.module.css'
 import { useState, FormEvent } from 'react'
 
 const Auth = () => {

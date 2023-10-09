@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react'
 import CardMain from '../../modules/большая карточка/CardMain'
 
 interface ICatalogProps {
-	category: string[]
+	category: { name: string; id: number }[]
 	url?: string
 	cardsArray: ICard[]
 	setCardsArray: (value: ICard[]) => void
@@ -33,7 +33,7 @@ const Catalog: FC<ICatalogProps> = ({
 		<div>
 			<div>
 				{category.map((cat) => (
-					<h2>{cat}</h2>
+					<h2 key={cat.id}>{cat.name}</h2>
 				))}
 			</div>
 

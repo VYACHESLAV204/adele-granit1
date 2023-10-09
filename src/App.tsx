@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ICard } from './Components/modules/маленькая карточка/Card.js'
 
 import './App.css'
-import Header from './Components/buildPages/Header/Header.js'
-import Reg from './Components/modules/авторизация и регистрация/Reg.js'
+
 import MainPage from './Components/buildPages/mainPage/MainPage.js'
 import CardDetails from './Components/buildPages/cardinner/cardDetails.js'
 import Catalog from './Components/buildPages/catalog/Catalog.js'
+import Layout from './Components/buildPages/Layout.js'
 function App() {
 	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('')
 	const [isOpen, setIsOpen] = useState(false)
@@ -19,42 +19,64 @@ function App() {
 			.then((data) => setCitys(data.city))
 			.catch((error) => console.log(error))
 	}, [])
-	
-	const category = ['Блоки', 'карьеры']
+
+	const category = [
+		{ name: 'Блоки', id: 1 },
+		{ name: 'Ритуальные услуги', id: 2 },
+	]
+	const cardData = [
+		{
+			title: 'jasjkdopsakd',
+			price: '3600',
+			info: 'kodaksopjkepofkasdofkpoewakfposakfpokaf',
+		},
+		{
+			title: 'jasjkdopsakd',
+			price: '3600',
+			info: 'kodaksopjkepofkasdofkpoewakfposakfpokaf',
+		},
+		{
+			title: 'jasjkdopsakd',
+			price: '3600',
+			info: 'kodaksopjkepofkasdofkpoewakfposakfpokaf',
+		},
+		{
+			title: 'jasjkdopsakd',
+			price: '3600',
+			info: 'kodaksopjkepofkasdofkpoewakfposakfpokaf',
+		},
+	]
 	return (
 		<Router>
 			<div>
-				<Header
+				<Layout
 					citys={citys}
 					setModalType={setModalType}
 					setIsOpen={setIsOpen}
-				/>
-				<Reg
-					modalType={modalType}
-					setIsOpen={setIsOpen}
 					isOpen={isOpen}
-				/>
-
-				<Routes>
-					<Route
-						path='/'
-						element={<MainPage cardData= />}
-					/>
-					<Route
-						path='/card/:id'
-						element={<CardDetails cardData= />}
-					/>
-					<Route
-						path='/catalog/'
-						element={
-							<Catalog
-								cardsArray={cardsArray}
-								setCardsArray={setCardsArray}
-								category={category}
-							/>
-						}
-					/>
-				</Routes>
+					modalType={modalType}
+				>
+					<Routes>
+						<Route
+							path='/'
+							element={<MainPage cardData={cardData} />}
+						/>
+						<Route
+							path='/card/:id'
+							element={<CardDetails cardData={cardData} />}
+						/>
+						<Route
+							path='/catalog/'
+							element={
+								<Catalog
+									cardsArray={cardsArray}
+									setCardsArray={setCardsArray}
+									category={category}
+								/>
+							}
+						/>
+					</Routes>
+				</Layout>
 			</div>
 		</Router>
 	)

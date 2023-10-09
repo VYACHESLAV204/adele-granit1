@@ -3,26 +3,27 @@ const CardMain = () => {
 	return (
 		<div className={s.mainDiv}>
 			<div className={s.leftDiv}>
-				<div className={s.leftHeaderDiv}>
-					<img src='' alt='' />
-				</div>
-				<div className={s.leftBottomDiv}>
-					<h2>ООО ХОУМ СТРОЙ</h2>
-					<div>
-						<p>Показать телефон</p>
-					</div>
-				</div>
+				<img src='https://picsum.photos/316/323' alt='' />
 			</div>
 			<div className={s.rightDiv}>
-				<h2>Памятник 1</h2>
-				<p>3900 Р</p>
-				<p>Описание:</p>
-				<p>
+				<h2 className={s.H2Name}>Памятник 1</h2>
+				<p className={s.Price}>
+					3900 <span>Р</span>
+				</p>
+				<p className={s.AboutHeader}>Описание:</p>
+				<p className={s.AboutText}>
 					С учётом сложившейся международной обстановки, перспективное
 					планирование предоставляет широкие возможности для
 					первоочередных требований...
 				</p>
-				<p>Город:Санкт-петербург, Адмиралтейская</p>
+				<p className={s.Organization}>ООО ХОУМ СТРОЙ</p>
+				<div className={s.NumberDiv}>
+					<p>Показать телефон</p>
+				</div>
+				<p className={s.City}>
+					<span className={s.CitySpan}>Город:</span>Санкт-петербург,
+					Адмиралтейская
+				</p>
 			</div>
 		</div>
 	)
