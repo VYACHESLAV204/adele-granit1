@@ -7,12 +7,20 @@ import geoForHeader from '../../../assets/geoForHeader.svg'
 import HeaderMenu3Line from '../../../assets/HeaderMenu3Line.svg'
 import InputButton from '../../modules/Поиск в шапке/Search'
 type HeaderProps = {
+	setCategory: (value: React.SetStateAction<string>) => void
+	setUnderCategory: (value: React.SetStateAction<string>) => void
 	setModalType: React.Dispatch<React.SetStateAction<'auth' | 'reg' | ''>>
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 	citys: { label: string; value: string }[]
 }
 
-const Header: React.FC<HeaderProps> = ({ setModalType, setIsOpen, citys }) => {
+const Header: React.FC<HeaderProps> = ({
+	setModalType,
+	setIsOpen,
+	citys,
+	setCategory,
+	setUnderCategory,
+}) => {
 	const [BurgerisOpen, setBurgerisOpen] = useState(false)
 	type OptionType = { label: string; value: string }
 
@@ -54,7 +62,11 @@ const Header: React.FC<HeaderProps> = ({ setModalType, setIsOpen, citys }) => {
 			<img src={logo} alt='Логотип' />
 			{RegionSelect()}
 			<div
-				onClick={() => setBurgerisOpen(!BurgerisOpen)}
+				onClick={(e) => {
+					e.preventDefault()
+					e.stopPropagation()
+					setBurgerisOpen(!BurgerisOpen)
+				}}
 				className={styles.BurgerMenu}
 			>
 				<button>
@@ -62,6 +74,8 @@ const Header: React.FC<HeaderProps> = ({ setModalType, setIsOpen, citys }) => {
 				</button>
 				<h2>Все категории</h2>
 				<Menu
+					setCategory={setCategory}
+					setUnderCategory={setUnderCategory}
 					BurgerisOpen={BurgerisOpen}
 					setBurgerIsOpen={setBurgerisOpen}
 				></Menu>
