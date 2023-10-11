@@ -54,7 +54,12 @@ const Header: React.FC<HeaderProps> = ({ setModalType, setIsOpen, citys }) => {
 			<img src={logo} alt='Логотип' />
 			{RegionSelect()}
 			<div
-				onClick={() => setBurgerisOpen(!BurgerisOpen)}
+				onClick={(e) => {
+
+					e.preventDefault()
+					e.stopPropagation()
+					setBurgerisOpen(!BurgerisOpen)
+				}}
 				className={styles.BurgerMenu}
 			>
 				<button>

@@ -9,9 +9,9 @@
 }
 
 .menuWrapperActive {
-	left: 0;
+	left: 310px;
 	position: fixed;
-	top: 0;
+	top: 140px;
 	width: 630px;
 	height: 690px;
 	transition: left 0.3s ease;
@@ -24,8 +24,120 @@
 .menu {
 	list-style-type: none;
 	padding: 20px;
+	margin: 0;
 }
 
 .menu > li {
-	margin-bottom: 10px;
+	display: flex;
+	margin-bottom: 0px;
+	position: relative;
+}
+.MenuOnceDiv {
+	width: 272px;
+	height: 49px;
+	background-color: #fff;
+	display: flex;
+	color: black;
+	box-sizing: border-box;
+	padding: 0 20px;
+	margin-bottom: 25px;
+	border: 1.3px solid #9090d8;
+	margin-top: 0;
+	align-items: center;
+	border-radius: 15px 17px 17px 0px;
+	justify-content: space-between;
+}
+.MenuOnceDiv3 {
+	width: 272px;
+	height: 49px;
+	background-color: #fff;
+	display: flex;
+	color: black;
+	box-sizing: border-box;
+	padding: 0 20px;
+	margin-bottom: 25px;
+	border: 1.3px solid #9090d8;
+	margin-top: 0;
+	align-items: center;
+	border-radius: 15px 17px 17px 0px;
+	justify-content: space-between;
+}
+.MenuOnceDiv:hover {
+	background-color: #5250c5;
+	color: #fff;
+}
+.MenuOnceDiv3:hover {
+	background-color: #5250c5;
+	color: #fff;
+}
+.MenuOnceDiv > h2 {
+	text-align: center;
+	font-family: Inter;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.MenuOnceDiv > img {
+	width: 15px;
+	height: 20px;
+}
+.MenuInnerImgRotate {
+	width: 15px;
+	transform: rotate(90deg);
+	height: 20px;
+}
+.submenu {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: flex-start;
+	list-style-type: none;
+	padding: 10px;
+	position: fixed; /* Позиционируем подменю абсолютно относительно родительского элемента */
+	top: 170px;
+	left: 650px; /* Смещаем его вправо на 100% от ширины родительского элемента */
+	min-width: 200px; /* Устанавливаем минимальную ширину */
+
+	background-color: white;
+	visibility: hidden; /* Скрываем подменю по умолчанию */
+	opacity: 0;
+	transition: visibility 0.3s, opacity 0.3s; /* Добавляем плавный переход */
+}
+
+.menu > li:hover .submenu {
+	visibility: visible; /* Показываем подменю, когда мышь наведена на родительский элемент */
+	opacity: 1;
+}
+.InnerLiHidden {
+	visibility: hidden;
+	opacity: 0;
+}
+.InnerLiVisible {
+	visibility: visible;
+	opacity: 1;
+	list-style-type: none;
+	display: flex;
+	margin: 0px;
+	flex-direction: column;
+	padding: 0px;
+	align-items: flex-start;
+}
+.InnerLiVisible>li {color: var(--black, #212121);
+	text-align: center;
+	font-family: Inter;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;margin-bottom: 29px;}
+
+.line {
+	margin-top: 22px;
+	height: 610px;
+	width: 0px;
+	border: 1px solid #9090d8;
+}
+.MainDiv {
+	display: flex;
 }
