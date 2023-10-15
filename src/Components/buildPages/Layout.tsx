@@ -9,6 +9,8 @@ interface HeaderProps {
 	setIsOpen: (value: React.SetStateAction<boolean>) => void
 	modalType: 'auth' | 'reg' | ''
 	isOpen: boolean
+	setCategory: (value: React.SetStateAction<string>) => void
+	setUnderCategory: (value: React.SetStateAction<string>) => void
 }
 const Layout: React.FC<HeaderProps> = ({
 	citys,
@@ -17,6 +19,8 @@ const Layout: React.FC<HeaderProps> = ({
 	modalType,
 	isOpen,
 	children,
+	setCategory,
+	setUnderCategory,
 }) => {
 	return (
 		<>
@@ -24,6 +28,8 @@ const Layout: React.FC<HeaderProps> = ({
 				setIsOpen={setIsOpen}
 				setModalType={setModalType}
 				citys={citys}
+				setCategory={setCategory}
+				setUnderCategory={setUnderCategory}
 			/>
 
 			<Reg setIsOpen={setIsOpen} modalType={modalType} isOpen={isOpen} />
