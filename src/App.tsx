@@ -88,7 +88,7 @@ function App() {
 							path='/new-card/'
 							element={
 								<NewCard
-									category={underCategoryForNewCard}
+									category={categoryForNewCard}
 									underCategory={underCategoryForNewCard}
 								/>
 							}

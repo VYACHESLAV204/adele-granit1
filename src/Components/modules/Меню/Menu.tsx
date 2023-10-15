@@ -1,27 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import s from './Menu.module.css'
 import MenuArrow from '../../../assets/Menu arrow.svg'
 
 interface MenuProps {
 	BurgerisOpen: boolean
 	setBurgerIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-
-	setCategory: (value: React.SetStateAction<string>) => void
-	setUnderCategory: (value: React.SetStateAction<string>) => void
+	setCategory:React.Dispatch<React.SetStateAction<string>>
+	setUnderCategory:React.Dispatch<React.SetStateAction<string>>
 }
 
-const Menu: React.FC<MenuProps> = ({
-	BurgerisOpen,
-	setBurgerIsOpen,
-	setCategory,
-	setUnderCategory,
-}) => {
+const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,setUnderCategory }) => {
 	const toggleMenu = () => {
 		setBurgerIsOpen(!BurgerisOpen)
 	}
-
 	const [hover, setHover] = useState(false)
-	const [submenu, setSubmenu] = useState(false)
+	const [submenu, setSubmenu] = useState({
+		submenuCarier: false,
+		submenuBloks: false,
+		buildingMaterials: false,
+		rituals: false,
+		tools: false,
+		machine: false,
+		specialTecknik: false,
+		work: false,
+		serveces: false,
+	})
+	function FnSetSub(name: string, value: boolean) {
+		setSubmenu({
+			...submenu,
+			specialTecknik: false,
+			submenuCarier: false,
+			buildingMaterials: false,
+			submenuBloks: false,
+			rituals: false,
+			tools: false,
+			machine: false,
+			work: false,
+			serveces: false,
+			[name]: value,
+		})
+	}
+	useEffect(() => {
+		console.log(submenu)
+	}, [submenu])
+
 	return (
 		<div
 			onClick={(e) => e.stopPropagation()}
@@ -31,13 +53,23 @@ const Menu: React.FC<MenuProps> = ({
 				<div className='1'>
 					<ul className={s.menu}>
 						<li>
-							<div className={s.MenuOnceDiv}>
+							<div
+								onClick={() =>
+									FnSetSub(
+										'submenuCarier',
+										!submenu.submenuCarier
+									)
+								}
+								className={s.MenuOnceDiv}
+							>
 								<h2>Карьер</h2>
 								<img src={MenuArrow} alt='' />
 							</div>
 							<ul
 								className={
-									submenu ? s.submenuActive : s.submenu
+									submenu.submenuCarier
+										? s.submenuActive
+										: s.submenu
 								}
 							>
 								<div className={s.MenuOnceDiv}>
@@ -49,13 +81,23 @@ const Menu: React.FC<MenuProps> = ({
 							</ul>
 						</li>
 						<li>
-							<div className={s.MenuOnceDiv}>
+							<div
+								onClick={() =>
+									FnSetSub(
+										'submenuBloks',
+										!submenu.submenuBloks
+									)
+								}
+								className={s.MenuOnceDiv}
+							>
 								<h2>Блоки</h2>
 								<img src={MenuArrow} alt='' />
 							</div>
 							<ul
 								className={
-									submenu ? s.submenuActive : s.submenu
+									submenu.submenuBloks
+										? s.submenuActive
+										: s.submenu
 								}
 							>
 								<div
@@ -114,13 +156,23 @@ const Menu: React.FC<MenuProps> = ({
 							</ul>
 						</li>
 						<li>
-							<div className={s.MenuOnceDiv}>
+							<div
+								onClick={() =>
+									FnSetSub(
+										'buildingMaterials',
+										!submenu.buildingMaterials
+									)
+								}
+								className={s.MenuOnceDiv}
+							>
 								<h2>Строй материалы</h2>
 								<img src={MenuArrow} alt='' />
 							</div>
 							<ul
 								className={
-									submenu ? s.submenuActive : s.submenu
+									submenu.buildingMaterials
+										? s.submenuActive
+										: s.submenu
 								}
 							>
 								<div
@@ -177,13 +229,20 @@ const Menu: React.FC<MenuProps> = ({
 							</ul>
 						</li>
 						<li>
-							<div className={s.MenuOnceDiv}>
+							<div
+								onClick={() =>
+									FnSetSub('rituals', !submenu.rituals)
+								}
+								className={s.MenuOnceDiv}
+							>
 								<h2>Ритуальные изделия</h2>
 								<img src={MenuArrow} alt='' />
 							</div>
 							<ul
 								className={
-									submenu ? s.submenuActive : s.submenu
+									submenu.rituals
+										? s.submenuActive
+										: s.submenu
 								}
 							>
 								<div
@@ -278,13 +337,20 @@ const Menu: React.FC<MenuProps> = ({
 							</ul>
 						</li>
 						<li>
-							<div className={s.MenuOnceDiv}>
+							<div
+								onClick={() =>
+									FnSetSub('machine', !submenu.machine)
+								}
+								className={s.MenuOnceDiv}
+							>
 								<h2>Станки</h2>
 								<img src={MenuArrow} alt='' />
 							</div>
 							<ul
 								className={
-									submenu ? s.submenuActive : s.submenu
+									submenu.machine
+										? s.submenuActive
+										: s.submenu
 								}
 							>
 								<div
@@ -327,13 +393,18 @@ const Menu: React.FC<MenuProps> = ({
 							</ul>
 						</li>
 						<li>
-							<div className={s.MenuOnceDiv}>
+							<div
+								onClick={() =>
+									FnSetSub('tools', !submenu.tools)
+								}
+								className={s.MenuOnceDiv}
+							>
 								<h2>Инструменты</h2>
 								<img src={MenuArrow} alt='' />
 							</div>
 							<ul
 								className={
-									submenu ? s.submenuActive : s.submenu
+									submenu.tools ? s.submenuActive : s.submenu
 								}
 							>
 								<div className={s.MenuOnceDiv}>
@@ -343,13 +414,23 @@ const Menu: React.FC<MenuProps> = ({
 							</ul>
 						</li>
 						<li>
-							<div className={s.MenuOnceDiv}>
+							<div
+								onClick={() =>
+									FnSetSub(
+										'specialTecknik',
+										!submenu.specialTecknik
+									)
+								}
+								className={s.MenuOnceDiv}
+							>
 								<h2>Спец техника</h2>
 								<img src={MenuArrow} alt='' />
 							</div>
 							<ul
 								className={
-									submenu ? s.submenuActive : s.submenu
+									submenu.specialTecknik
+										? s.submenuActive
+										: s.submenu
 								}
 							>
 								<div
@@ -390,13 +471,16 @@ const Menu: React.FC<MenuProps> = ({
 							</ul>
 						</li>
 						<li>
-							<div className={s.MenuOnceDiv}>
+							<div
+								onClick={() => FnSetSub('work', !submenu.work)}
+								className={s.MenuOnceDiv}
+							>
 								<h2>Работа</h2>
 								<img src={MenuArrow} alt='' />
 							</div>
 							<ul
 								className={
-									submenu ? s.submenuActive : s.submenu
+									submenu.work ? s.submenuActive : s.submenu
 								}
 							>
 								<div
@@ -445,13 +529,20 @@ const Menu: React.FC<MenuProps> = ({
 							</ul>
 						</li>
 						<li>
-							<div className={s.MenuOnceDiv}>
+							<div
+								onClick={() =>
+									FnSetSub('serveces', !submenu.serveces)
+								}
+								className={s.MenuOnceDiv}
+							>
 								<h2>Услуги</h2>
 								<img src={MenuArrow} alt='' />
 							</div>
 							<ul
 								className={
-									submenu ? s.submenuActive : s.submenu
+									submenu.serveces
+										? s.submenuActive
+										: s.submenu
 								}
 							>
 								<div

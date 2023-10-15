@@ -99,16 +99,27 @@
 	top: 170px;
 	left: 650px; /* Смещаем его вправо на 100% от ширины родительского элемента */
 	min-width: 200px; /* Устанавливаем минимальную ширину */
-
 	background-color: white;
 	visibility: hidden; /* Скрываем подменю по умолчанию */
 	opacity: 0;
 	transition: visibility 0.3s, opacity 0.3s; /* Добавляем плавный переход */
 }
 
-.menu > li:hover .submenu {
+.submenuActive {
 	visibility: visible; /* Показываем подменю, когда мышь наведена на родительский элемент */
 	opacity: 1;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: flex-start;
+	list-style-type: none;
+	padding: 10px;
+	position: fixed; /* Позиционируем подменю абсолютно относительно родительского элемента */
+	top: 170px;
+	left: 650px; /* Смещаем его вправо на 100% от ширины родительского элемента */
+	min-width: 200px; /* Устанавливаем минимальную ширину */
+	background-color: white;
+	transition: visibility 0.3s, opacity 0.3s; /* Добавляем плавный переход */
 }
 .InnerLiHidden {
 	visibility: hidden;
@@ -124,13 +135,16 @@
 	padding: 0px;
 	align-items: flex-start;
 }
-.InnerLiVisible>li {color: var(--black, #212121);
+.InnerLiVisible > li {
+	color: #212121;
 	text-align: center;
 	font-family: Inter;
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 400;
-	line-height: normal;margin-bottom: 29px;}
+	line-height: normal;
+	margin-bottom: 29px;
+}
 
 .line {
 	margin-top: 22px;

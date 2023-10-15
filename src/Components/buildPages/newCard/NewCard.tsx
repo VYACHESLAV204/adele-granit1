@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import greenMoney from '../../../assets/greenmoney.svg'
 import s from './NewCard.module.css'
 interface InewCardProps {
@@ -5,6 +6,11 @@ interface InewCardProps {
 	underCategory: string
 }
 const NewCard: React.FC<InewCardProps> = ({ category, underCategory }) => {
+	useEffect(() => {
+		console.log(category)
+		console.log(underCategory)
+	}, [category,underCategory])
+
 	return (
 		<div className={s.MainDiv}>
 			<h2 className={s.H2Cat}>Категория</h2>
