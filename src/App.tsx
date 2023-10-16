@@ -10,6 +10,7 @@ import Catalog from './Components/buildPages/catalog/Catalog.js'
 import Layout from './Components/buildPages/Layout.js'
 import NewCard from './Components/buildPages/newCard/NewCard.js'
 import Profile from './Components/buildPages/profileSetup/Profile.js'
+import Summary from './Components/buildPages/summary/Summary.js'
 
 function App() {
 	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('')
@@ -100,6 +101,10 @@ function App() {
 							path='/profile/'
 							element={<Profile citys={citys} />}
 						/>
+						<Route
+							path='/summary/'
+							element={<Summary/>} 
+							/>
 					</Routes>
 				</Layout>
 			</div>
