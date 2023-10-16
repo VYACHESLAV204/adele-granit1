@@ -1,11 +1,12 @@
 import styles from './Header.module.css'
 import { useState } from 'react'
-import Select from 'react-select'
+
 import Menu from '../../modules/Меню/Menu'
 import logo from '../../../assets/logo.svg'
 import geoForHeader from '../../../assets/geoForHeader.svg'
 import HeaderMenu3Line from '../../../assets/HeaderMenu3Line.svg'
 import InputButton from '../../modules/Поиск в шапке/Search'
+import RegionSelectTemplate from '../../modules/select/SelectTemplate'
 type HeaderProps = {
 	setCategory: (value: React.SetStateAction<string>) => void
 	setUnderCategory: (value: React.SetStateAction<string>) => void
@@ -22,37 +23,14 @@ const Header: React.FC<HeaderProps> = ({
 	setUnderCategory,
 }) => {
 	const [BurgerisOpen, setBurgerisOpen] = useState(false)
-	type OptionType = { label: string; value: string }
 
 	function RegionSelect() {
 		// Состояние для выбранного региона
-		const [selectedRegion, setSelectedRegion] = useState<OptionType>(
-			citys[0]
-		)
 
-		const handleChange = (
-			selectedOption: OptionType | null,
-			_actionMeta: any
-		) => {
-			if (selectedOption !== null) {
-				setSelectedRegion(selectedOption)
-			}
-		}
 		return (
 			<div className={styles.RegionDiv}>
 				<img src={geoForHeader} alt='' />
-				<Select
-					value={selectedRegion}
-					options={citys}
-					onChange={handleChange}
-					styles={{
-						control: (base) => ({
-							...base,
-							marginLeft: 10,
-							width: 160, // Устанавливаем заданную ширину
-						}),
-					}}
-				/>
+				<RegionSelectTemplate citys={citys}></RegionSelectTemplate>
 			</div>
 		)
 	}
