@@ -9,6 +9,7 @@ import CardDetails from './Components/buildPages/cardinner/cardDetails.js'
 import Catalog from './Components/buildPages/catalog/Catalog.js'
 import Layout from './Components/buildPages/Layout.js'
 import NewCard from './Components/buildPages/newCard/NewCard.js'
+import Profile from './Components/buildPages/profileSetup/Profile.js'
 
 function App() {
 	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('')
@@ -18,9 +19,11 @@ function App() {
 	const [categoryForNewCard, setCategoryForNewCard] = useState('')
 	const [underCategoryForNewCard, setUnderCategoryForNewCard] = useState('')
 	useEffect(() => {
-		fetch('http://192.168.47.162:6969/api/v1/citys')
+		fetch('http://192.168.118.162:6969/api/v1/citys')
 			.then((response) => response.json())
 			.then((data) => setCitys(data.city))
+			.then((data) => console.log(data)
+			)
 			.catch((error) => console.log(error))
 	}, [])
 	useEffect(() => {
@@ -92,6 +95,10 @@ function App() {
 									underCategory={underCategoryForNewCard}
 								/>
 							}
+						/>
+						<Route
+							path='/profile/'
+							element={<Profile citys={citys} />}
 						/>
 					</Routes>
 				</Layout>
