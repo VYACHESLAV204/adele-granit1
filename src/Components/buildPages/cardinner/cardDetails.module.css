@@ -1,0 +1,10 @@
+.mainDiv {
+	height: 453px;
+	width: 1057px;
+	display: flex;
+}
+.imgdiv {
+	width: 491px;
+	height: 453px;
+    border-radius: 15px;
+}

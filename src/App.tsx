@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { ICard } from './Components/modules/маленькая карточка/Card.js'
-
 import './App.css'
-
+import { ICard } from './Components/modules/маленькая карточка/Card.js'
 import MainPage from './Components/buildPages/mainPage/MainPage.js'
 import CardDetails from './Components/buildPages/cardinner/cardDetails.js'
 import Catalog from './Components/buildPages/catalog/Catalog.js'
@@ -15,21 +13,20 @@ function App() {
 	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('')
 	const [isOpen, setIsOpen] = useState(false)
 	const [citys, setCitys] = useState([])
-	const [cardsArray, setCardsArray] = useState<ICard[]>([])
+	const [, setCardsArray] = useState<ICard[]>([])
 	const [categoryForNewCard, setCategoryForNewCard] = useState('')
 	const [underCategoryForNewCard, setUnderCategoryForNewCard] = useState('')
 	useEffect(() => {
 		fetch('http://192.168.118.162:6969/api/v1/citys')
 			.then((response) => response.json())
 			.then((data) => setCitys(data.city))
-			.then((data) => console.log(data)
-			)
+			.then((data) => console.log(data))
 			.catch((error) => console.log(error))
 	}, [])
 	useEffect(() => {
 		console.log(categoryForNewCard, underCategoryForNewCard)
 	}, [categoryForNewCard, underCategoryForNewCard])
-
+	//Категории и кард дата надо удалить
 	const category = [
 		{ name: 'Блоки', id: 1 },
 		{ name: 'Ритуальные услуги', id: 2 },
@@ -38,21 +35,25 @@ function App() {
 		{
 			title: 'jasjkdopsakd',
 			price: '3600',
+			id:4,
 			info: 'kodaksopjkepofkasdofkpoewakfposakfpokaf',
 		},
 		{
 			title: 'jasjkdopsakd',
 			price: '3600',
+			id:3,
 			info: 'kodaksopjkepofkasdofkpoewakfposakfpokaf',
 		},
 		{
 			title: 'jasjkdopsakd',
 			price: '3600',
+			id:2,
 			info: 'kodaksopjkepofkasdofkpoewakfposakfpokaf',
 		},
 		{
 			title: 'jasjkdopsakd',
 			price: '3600',
+			id:1,
 			info: 'kodaksopjkepofkasdofkpoewakfposakfpokaf',
 		},
 	]
@@ -68,6 +69,9 @@ function App() {
 					setCategory={setCategoryForNewCard}
 					setUnderCategory={setUnderCategoryForNewCard}
 				>
+{/* layout - ok
+mainPage - cardData replace to backend card any category 
+*/}
 					<Routes>
 						<Route
 							path='/'

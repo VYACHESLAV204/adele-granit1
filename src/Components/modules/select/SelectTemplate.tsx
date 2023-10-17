@@ -16,7 +16,7 @@ const RegionSelectTemplate: React.FC<RegionSelectProps> = ({
 
 	const handleChange = (
 		selectedOption: OptionType | null,
-		_actionMeta: any
+		
 	) => {
 		if (selectedOption !== null) {
 			setSelectedRegion(selectedOption)
