@@ -12,7 +12,7 @@ interface ICatalogProps {
 	setCardsArray: (value: ICard[]) => void
 }
 const Catalog: FC<ICatalogProps> = ({
-	category,
+
 	url,
 	cardsArray,
 	setCardsArray,
