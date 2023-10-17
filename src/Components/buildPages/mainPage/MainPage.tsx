@@ -9,12 +9,13 @@ import rituals from '../../../assets/rituals.svg'
 import serveces from '../../../assets/serveces.svg'
 import specialTequinick from '../../../assets/specialTequinick.svg'
 import tools from '../../../assets/tools.svg'
-
 import s from './MainPage.module.css'
+
 interface IpropsCard {
-	cardData: { title: string; price: string; info: string }[]
+	cardData: { title: string; price: string; info: string; id?:number }[]
 }
 const MainPage: FC<IpropsCard> = ({ cardData }) => {
+	// 2 по 4 рек и 2 по 4 обычных на страницу
 	const CardStyles = {
 		marginRight: '10px',
 	}
@@ -108,18 +109,21 @@ const MainPage: FC<IpropsCard> = ({ cardData }) => {
 				<div className={s.AdCardsDiv}>
 					<h2 className={s.H2BestPractique}>Лучшие предложения:</h2>
 					<Card cardsStyles={CardsStylesColumn} cardsAd={cardData} />
+					{/* Рекламные в колонку */}
 				</div>
 			</div>
 			<h2 className={s.H2SpecialText}>Специальные предложения</h2>
 			<div>
 				<div className='container' style={{ display: 'flex' }}>
 					<div className='row'>
+						{/* рекламные горизонтально */}
 						<Card
 							cardsStyles={CardsStyles}
 							inlineStyles={CardStyles}
 							cardsAd={cardData}
 						/>
 						<h2 className={s.H2SpecialText}>Объявления для вас</h2>
+						{/* Обычные 8 шт */}
 						<Card
 							inlineStyles={CardStyles}
 							cardsStyles={CardsStyles}
