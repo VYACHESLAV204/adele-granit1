@@ -12,6 +12,7 @@ import Summary from './Components/buildPages/summary/Summary.js'
 import Settings from './Components/buildPages/settingsProfile/Settings.js'
 import Defence from './Components/buildPages/profileDefence/defence.js'
 import InfoProfile from './Components/buildPages/infoProfile/infoProfile.js'
+import MyAds from './Components/buildPages/myAds/myAds.js'
 
 function App() {
 	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('')
@@ -123,6 +124,10 @@ mainPage - cardData replace to backend card any category
 						<Route
 							path='/info-profile'
 							element={<InfoProfile/>}
+							/>
+						<Route
+							path='/my-ads/'
+							element={<MyAds/>}
 							/>
 					</Routes>
 				</Layout>
