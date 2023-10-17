@@ -17,6 +17,39 @@ body {
 	min-width: 320px;
 	min-height: 100vh;
 }
+
+.mainTitle{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 2rem;
+}
+.secondTitle{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.btn{
+	border: 0;
+	color: #fff;
+	width: 196px;
+	height: 45px;
+	border-radius: 7px;
+	background: #5250C5;
+	box-shadow: 0px 4px 7px 0px rgba(99, 99, 151, 0.15);
+}
+.input{
+    width: 210px;
+	height: 39px;
+	border-radius: 5px;
+	border: 1px solid #9090D8;
+	background: #F2F2FF;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+	margin-top: 15px;
+	padding-left: 10px;
+}
 @font-face {
 	font-family: 'Vela Sans';
 	src: local('VelaSansExtraLight'),

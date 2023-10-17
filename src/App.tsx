@@ -11,6 +11,9 @@ import Layout from './Components/buildPages/Layout.js'
 import NewCard from './Components/buildPages/newCard/NewCard.js'
 import Profile from './Components/buildPages/profileSetup/Profile.js'
 import Summary from './Components/buildPages/summary/Summary.js'
+import Settings from './Components/buildPages/settingsProfile/Settings.js'
+import Defence from './Components/buildPages/profileDefence/defence.js'
+import InfoProfile from './Components/buildPages/infoProfile/infoProfile.js'
 
 function App() {
 	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('')
@@ -104,6 +107,18 @@ function App() {
 						<Route
 							path='/summary/'
 							element={<Summary/>} 
+							/>
+						<Route
+							path='/settings/'
+							element={<Settings/>}
+							/>
+						<Route
+							path='/defence/'
+							element={<Defence/>}
+							/>
+						<Route
+							path='/info-profile'
+							element={<InfoProfile/>}
 							/>
 					</Routes>
 				</Layout>
