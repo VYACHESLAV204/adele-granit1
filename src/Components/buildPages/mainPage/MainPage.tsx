@@ -11,34 +11,36 @@ import specialTequinick from '../../../assets/specialTequinick.svg'
 import tools from '../../../assets/tools.svg'
 import s from './MainPage.module.css'
 export interface CardAdResponse {
-	status: boolean;
-	card_ads_1: CardAd[];
-	card_ads_2: CardAd[];
-	card_no_ads: CardAd[];
-  }
-  
- export interface CardAd {
-	ads: boolean;
-	caption: string;
-	category: string;
-	city: string;
-	description: string;
-	email: string;
-	id_card: number;
-	id_user: string;
-	path_file: string;
-	phone: string;
-	price: string;
-	subcategory: string;
-	tariff: string;
-	telephone: string;
-	telephone_two: null | string;
-	username: string;
-  } 
-const MainPage: FC<CardAdResponse> = ({ card_ads_1,card_ads_2,card_no_ads }) => {
+	status: boolean
+	card_ads_1: CardAd[]
+	card_ads_2: CardAd[]
+	card_no_ads: CardAd[]
+}
+
+export interface CardAd {
+	ads: boolean
+	caption: string
+	category: string
+	city: string
+	description: string
+	email: string
+	id_card: number
+	id_user: string
+	path_file: string
+	phone: string
+	price: string
+	subcategory: string
+	tariff: string
+	telephone: string
+	telephone_two: null | string
+	username: string
+}
+const MainPage: FC<CardAdResponse> = ({
+	card_ads_1,
+	card_ads_2,
+	card_no_ads,
+}) => {
 	// 2 по 4 рек и 2 по 4 обычных на страницу
-
-
 
 	const CardStyles = {
 		marginRight: '10px',

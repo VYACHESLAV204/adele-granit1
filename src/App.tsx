@@ -23,69 +23,7 @@ function App() {
 	const [isOpen, setIsOpen] = useState(false)
 	const [citys, setCitys] = useState([])
 	const [cardsArray, setCardsArray] = useState<CardAd[]>([])
-	const [cards, setCards] = useState<CardAdResponse>({
-		status: false,
-		card_ads_1: [
-			{
-				ads: false,
-				caption: '',
-				category: '',
-				city: '',
-				description: '',
-				email: '',
-				id_card: 1,
-				id_user: '',
-				path_file: '',
-				phone: '',
-				price: '',
-				subcategory: '',
-				tariff: '',
-				telephone: '',
-				telephone_two: '',
-				username: '',
-			},
-		],
-		card_ads_2: [
-			{
-				ads: false,
-				caption: '',
-				category: '',
-				city: '',
-				description: '',
-				email: '',
-				id_card: 1,
-				id_user: '',
-				path_file: '',
-				phone: '',
-				price: '',
-				subcategory: '',
-				tariff: '',
-				telephone: '',
-				telephone_two: '',
-				username: '',
-			},
-		],
-		card_no_ads: [
-			{
-				ads: false,
-				caption: '',
-				category: '',
-				city: '',
-				description: '',
-				email: '',
-				id_card: 1,
-				id_user: '',
-				path_file: '',
-				phone: '',
-				price: '',
-				subcategory: '',
-				tariff: '',
-				telephone: '',
-				telephone_two: '',
-				username: '',
-			},
-		],
-	})
+	const [cards, setCards] = useState<CardAdResponse>()
 	const [categoryForNewCard, setCategoryForNewCard] = useState('')
 	const [underCategoryForNewCard, setUnderCategoryForNewCard] = useState('')
 	useEffect(() => {
@@ -133,6 +71,7 @@ mainPage - cardData replace to backend card any category
 										card_ads_2={cards.card_ads_2}
 										card_no_ads={cards.card_no_ads}
 										status={cards.status}
+										
 									/>
 								)
 							}
