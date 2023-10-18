@@ -97,7 +97,7 @@
 	padding: 10px;
 	position: fixed; /* Позиционируем подменю абсолютно относительно родительского элемента */
 	top: 170px;
-	left: 650px; /* Смещаем его вправо на 100% от ширины родительского элемента */
+	left: 630px; /* Смещаем его вправо на 100% от ширины родительского элемента */
 	min-width: 200px; /* Устанавливаем минимальную ширину */
 	background-color: white;
 	visibility: hidden; /* Скрываем подменю по умолчанию */
@@ -116,7 +116,7 @@
 	padding: 10px;
 	position: fixed; /* Позиционируем подменю абсолютно относительно родительского элемента */
 	top: 170px;
-	left: 650px; /* Смещаем его вправо на 100% от ширины родительского элемента */
+	left: 630px; /* Смещаем его вправо на 100% от ширины родительского элемента */
 	min-width: 200px; /* Устанавливаем минимальную ширину */
 	background-color: white;
 	transition: visibility 0.3s, opacity 0.3s; /* Добавляем плавный переход */
@@ -124,6 +124,7 @@
 .InnerLiHidden {
 	visibility: hidden;
 	opacity: 0;
+	display: none;
 }
 .InnerLiVisible {
 	visibility: visible;
@@ -132,6 +133,7 @@
 	display: flex;
 	margin: 0px;
 	flex-direction: column;
+	cursor: pointer;
 	padding: 0px;
 	align-items: flex-start;
 }

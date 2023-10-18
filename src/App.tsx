@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
-import { ICard } from './Components/modules/маленькая карточка/Card.js'
+import {
+	CardAd,
+	CardAdResponse,
+} from './Components/buildPages/mainPage/MainPage.js'
 import MainPage from './Components/buildPages/mainPage/MainPage.js'
 import CardDetails from './Components/buildPages/cardinner/cardDetails.js'
 import Catalog from './Components/buildPages/catalog/Catalog.js'
@@ -20,15 +23,20 @@ function App() {
 	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('')
 	const [isOpen, setIsOpen] = useState(false)
 	const [citys, setCitys] = useState([])
-	const [, setCardsArray] = useState<ICard[]>([])
+	const [cardsArray, setCardsArray] = useState<CardAd[]>([])
+	const [cards, setCards] = useState<CardAdResponse>()
 	const [categoryForNewCard, setCategoryForNewCard] = useState('')
 	const [underCategoryForNewCard, setUnderCategoryForNewCard] = useState('')
 	useEffect(() => {
-		fetch('http://192.168.118.162:6969/api/v1/citys')
+		fetch('http://31.129.105.19/api/v1/citys')
 			.then((response) => response.json())
 			.then((data) => setCitys(data.city))
 			.then((data) => console.log(data))
 			.catch((error) => console.log(error))
+
+		fetch('http://31.129.105.19/api/v1/index-page')
+			.then((responce) => responce.json())
+			.then((data) => setCards(data))
 	}, [])
 	useEffect(() => {
 		console.log(categoryForNewCard, underCategoryForNewCard)
@@ -38,32 +46,7 @@ function App() {
 		{ name: 'Блоки', id: 1 },
 		{ name: 'Ритуальные услуги', id: 2 },
 	]
-	const cardData = [
-		{
-			title: 'jasjkdopsakd',
-			price: '3600',
-			id:4,
-			info: 'kodaksopjkepofkasdofkpoewakfposakfpokaf',
-		},
-		{
-			title: 'jasjkdopsakd',
-			price: '3600',
-			id:3,
-			info: 'kodaksopjkepofkasdofkpoewakfposakfpokaf',
-		},
-		{
-			title: 'jasjkdopsakd',
-			price: '3600',
-			id:2,
-			info: 'kodaksopjkepofkasdofkpoewakfposakfpokaf',
-		},
-		{
-			title: 'jasjkdopsakd',
-			price: '3600',
-			id:1,
-			info: 'kodaksopjkepofkasdofkpoewakfposakfpokaf',
-		},
-	]
+
 	return (
 		<Router>
 			<div>
@@ -76,23 +59,33 @@ function App() {
 					setCategory={setCategoryForNewCard}
 					setUnderCategory={setUnderCategoryForNewCard}
 				>
-{/* layout - ok
+					{/* layout - ok
 mainPage - cardData replace to backend card any category 
 */}
 					<Routes>
 						<Route
 							path='/'
-							element={<MainPage cardData={cardData} />}
+							element={
+								cards && (
+									<MainPage
+										card_ads_1={cards.card_ads_1}
+										card_ads_2={cards.card_ads_2}
+										card_no_ads={cards.card_no_ads}
+										status={cards.status}
+										
+									/>
+								)
+							}
 						/>
+
 						<Route
 							path='/card/:id'
-							element={<CardDetails cardData={cardData} />}
+							element={<CardDetails cardData={cards} />}
 						/>
 						<Route
 							path='/catalog/'
 							element={
 								<Catalog
-									cardsArray={cardData}
 									setCardsArray={setCardsArray}
 									category={category}
 								/>
@@ -111,6 +104,7 @@ mainPage - cardData replace to backend card any category
 							path='/profile/'
 							element={<Profile citys={citys} />}
 						/>
+
 						<Route
 							path='/summary/'
 							element={<Summary/>} 
@@ -139,6 +133,7 @@ mainPage - cardData replace to backend card any category
 							path='/moderation/'
 							element={<Moderation/>}
 							/>
+             
 					</Routes>
 				</Layout>
 			</div>
