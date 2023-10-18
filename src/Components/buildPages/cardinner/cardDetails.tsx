@@ -1,15 +1,16 @@
 import { FC, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import s from './cardDetails.module.css'
-interface ICardDetailsProps {
-	cardData: { title: string; price: string; info: string; id: number }[]
-}
-const CardDetails: FC<ICardDetailsProps> = ({ cardData }) => {
+import { IpropsCard } from '../mainPage/MainPage'
+
+const CardDetails: FC<IpropsCard> = ({ cardData }) => {
 	const { id } = useParams<{ id: string }>() // Keep it as string
 
 	const numberId = Number(id) // convert string id to numaric id
 
-	const thisCardFromAd = cardData.find((card) => card.id === numberId)
+	const thisCardFromAd = cardData.card1.find((card) => card.id === numberId)
+	console.log(thisCardFromAd)
+
 	//Логика если рекламные не рекламные не по ключу а в разных массивах
 	// const thisCardFromSimple = cardData.find((card) => card.id === numberId)
 

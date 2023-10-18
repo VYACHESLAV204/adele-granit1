@@ -5,15 +5,46 @@ import MenuArrow from '../../../assets/Menu arrow.svg'
 interface MenuProps {
 	BurgerisOpen: boolean
 	setBurgerIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-	setCategory:React.Dispatch<React.SetStateAction<string>>
-	setUnderCategory:React.Dispatch<React.SetStateAction<string>>
+	setCategory: React.Dispatch<React.SetStateAction<string>>
+	setUnderCategory: React.Dispatch<React.SetStateAction<string>>
 }
 
-const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,setUnderCategory }) => {
+const Menu: React.FC<MenuProps> = ({
+	BurgerisOpen,
+	setBurgerIsOpen,
+	setCategory,
+	setUnderCategory,
+}) => {
 	const toggleMenu = () => {
 		setBurgerIsOpen(!BurgerisOpen)
 	}
-	const [hover, setHover] = useState(false)
+	const [hover, setHover] = useState({
+		submenuCarier: false,
+		submenuBloks: false,
+		buildingMaterials: false,
+		rituals: false,
+		tools: false,
+		machine: false,
+		specialTecknik: false,
+		work: false,
+		serveces: false,
+	})
+	function FnSetHover(name: string, value: boolean) {
+		setHover({
+			...hover,
+			specialTecknik: false,
+			submenuCarier: false,
+			buildingMaterials: false,
+			submenuBloks: false,
+			rituals: false,
+			tools: false,
+			machine: false,
+			work: false,
+			serveces: false,
+			[name]: value,
+		})
+	}
+
 	const [submenu, setSubmenu] = useState({
 		submenuCarier: false,
 		submenuBloks: false,
@@ -41,8 +72,8 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 		})
 	}
 	useEffect(() => {
-		console.log(submenu)
-	}, [submenu])
+		FnSetSub('', false)
+	}, [BurgerisOpen])
 
 	return (
 		<div
@@ -101,7 +132,12 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								}
 							>
 								<div
-									onClick={() => setHover(!hover)}
+									onClick={() =>
+										FnSetHover(
+											'submenuBloks',
+											!hover.submenuBloks
+										)
+									}
 									className={s.MenuOnceDiv3}
 								>
 									<li>Блоки</li>
@@ -114,7 +150,7 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								<div>
 									<ul
 										className={
-											hover
+											hover.submenuBloks
 												? s.InnerLiVisible
 												: s.InnerLiHidden
 										}
@@ -176,7 +212,12 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								}
 							>
 								<div
-									onClick={() => setHover(!hover)}
+									onClick={() =>
+										FnSetHover(
+											'buildingMaterials',
+											!hover.buildingMaterials
+										)
+									}
 									className={s.MenuOnceDiv3}
 								>
 									<li>Строй материалы</li>
@@ -188,7 +229,7 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								</div>
 								<ul
 									className={
-										hover
+										hover.buildingMaterials
 											? s.InnerLiVisible
 											: s.InnerLiHidden
 									}
@@ -246,7 +287,9 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								}
 							>
 								<div
-									onClick={() => setHover(!hover)}
+									onClick={() =>
+										FnSetHover('rituals', !hover.rituals)
+									}
 									className={s.MenuOnceDiv3}
 								>
 									<li>Ритуальные изделия</li>
@@ -258,7 +301,7 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								</div>
 								<ul
 									className={
-										hover
+										hover.rituals
 											? s.InnerLiVisible
 											: s.InnerLiHidden
 									}
@@ -354,7 +397,9 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								}
 							>
 								<div
-									onClick={() => setHover(!hover)}
+									onClick={() =>
+										FnSetHover('machine', !hover.machine)
+									}
 									className={s.MenuOnceDiv3}
 								>
 									<li>Станки</li>
@@ -366,7 +411,7 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								</div>
 								<ul
 									className={
-										hover
+										hover.machine
 											? s.InnerLiVisible
 											: s.InnerLiHidden
 									}
@@ -407,9 +452,98 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 									submenu.tools ? s.submenuActive : s.submenu
 								}
 							>
-								<div className={s.MenuOnceDiv}>
+								<div
+									onClick={() =>
+										FnSetHover('tools', !hover.tools)
+									}
+									className={s.MenuOnceDiv3}
+								>
 									<li>Инструменты</li>
-									<img src={MenuArrow} alt='' />
+									<img
+										className={s.MenuInnerImgRotate}
+										src={MenuArrow}
+										alt=''
+									/>
+								</div>
+								<div>
+									<ul
+										className={
+											hover.tools
+												? s.InnerLiVisible
+												: s.InnerLiHidden
+										}
+									>
+										<li
+											onClick={() => {
+												setUnderCategory('Диски'),
+													setCategory('Инструменты')
+											}}
+										>
+											Диски
+										</li>
+										<li
+											onClick={() => {
+												setUnderCategory('Сегменты'),
+													setCategory('Инструменты')
+											}}
+										>
+											Сегменты
+										</li>
+										<li
+											onClick={() => {
+												setUnderCategory('Канат'),
+													setCategory('Инструменты')
+											}}
+										>
+											Канат
+										</li>
+										<li
+											onClick={() => {
+												setUnderCategory(
+													'Шлифовальный инструмент'
+												),
+													setCategory('Инструменты')
+											}}
+										>
+											Шлифовальный инструмент
+										</li>
+										<li
+											onClick={() => {
+												setUnderCategory('Фрезы'),
+													setCategory('Инструменты')
+											}}
+										>
+											Фрезы
+										</li>
+										<li
+											onClick={() => {
+												setUnderCategory('Химия'),
+													setCategory('Инструменты')
+											}}
+										>
+											Химия
+										</li>
+										<li
+											onClick={() => {
+												setUnderCategory(
+													'Электро, Пневмоинструмент'
+												),
+													setCategory('Инструменты')
+											}}
+										>
+											Электро, Пневмоинструмент
+										</li>
+										<li
+											onClick={() => {
+												setUnderCategory(
+													'Твердосплавный инструмент'
+												),
+													setCategory('Инструменты')
+											}}
+										>
+											Твердосплавный инструмент
+										</li>
+									</ul>
 								</div>
 							</ul>
 						</li>
@@ -434,7 +568,12 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								}
 							>
 								<div
-									onClick={() => setHover(!hover)}
+									onClick={() =>
+										FnSetHover(
+											'specialTecknik',
+											!hover.specialTecknik
+										)
+									}
 									className={s.MenuOnceDiv3}
 								>
 									<li>Спец техника</li>
@@ -446,7 +585,7 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								</div>
 								<ul
 									className={
-										hover
+										hover.specialTecknik
 											? s.InnerLiVisible
 											: s.InnerLiHidden
 									}
@@ -484,7 +623,9 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								}
 							>
 								<div
-									onClick={() => setHover(!hover)}
+									onClick={() =>
+										FnSetHover('work', !hover.work)
+									}
 									className={s.MenuOnceDiv3}
 								>
 									<li>Работа</li>
@@ -496,7 +637,7 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								</div>
 								<ul
 									className={
-										hover
+										hover.work
 											? s.InnerLiVisible
 											: s.InnerLiHidden
 									}
@@ -546,7 +687,9 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								}
 							>
 								<div
-									onClick={() => setHover(!hover)}
+									onClick={() =>
+										FnSetHover('serveces', !hover.serveces)
+									}
 									className={s.MenuOnceDiv3}
 								>
 									<li>Услуги</li>
@@ -559,7 +702,7 @@ const Menu: React.FC<MenuProps> = ({ BurgerisOpen, setBurgerIsOpen,setCategory,s
 								</div>
 								<ul
 									className={
-										hover
+										hover.serveces
 											? s.InnerLiVisible
 											: s.InnerLiHidden
 									}

@@ -19,14 +19,14 @@ const RegThird: React.FC<RegPropsThird> = (props) => {
 		name_profile: '',
 		phone: '',
 		password: '',
-		inn: null,
+		inn: 'None',
 	})
 
 	function updateField(fieldName: string, newValue: string | number) {
 		setState((prevState) => ({ ...prevState, [fieldName]: newValue }))
 	}
 	function SendData() {
-		fetch('http://192.168.1.71:6969/api/v1/last-check-in', {
+		fetch('http://31.129.105.19/api/v1/last-check-in', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

@@ -10,12 +10,36 @@ import serveces from '../../../assets/serveces.svg'
 import specialTequinick from '../../../assets/specialTequinick.svg'
 import tools from '../../../assets/tools.svg'
 import s from './MainPage.module.css'
-
-interface IpropsCard {
-	cardData: { title: string; price: string; info: string; id?:number }[]
-}
-const MainPage: FC<IpropsCard> = ({ cardData }) => {
+export interface CardAdResponse {
+	status: boolean;
+	card_ads_1: CardAd[];
+	card_ads_2: CardAd[];
+	card_no_ads: CardAd[];
+  }
+  
+ export interface CardAd {
+	ads: boolean;
+	caption: string;
+	category: string;
+	city: string;
+	description: string;
+	email: string;
+	id_card: number;
+	id_user: string;
+	path_file: string;
+	phone: string;
+	price: string;
+	subcategory: string;
+	tariff: string;
+	telephone: string;
+	telephone_two: null | string;
+	username: string;
+  } 
+const MainPage: FC<CardAdResponse> = ({ card_ads_1,card_ads_2,card_no_ads }) => {
 	// 2 по 4 рек и 2 по 4 обычных на страницу
+
+
+
 	const CardStyles = {
 		marginRight: '10px',
 	}
@@ -34,20 +58,12 @@ const MainPage: FC<IpropsCard> = ({ cardData }) => {
 				<div className={s.MenuDiv}>
 					<div className={s.MenuCarier}>
 						<p className={s.MenuTexts}>Карьер</p>
-						<img
-							className={s.MenuImg}
-							src={carier}
-							alt=''
-						/>
+						<img className={s.MenuImg} src={carier} alt='' />
 					</div>
 
 					<div className={s.MenuBlocks}>
 						<p className={s.MenuTexts}>Блоки</p>
-						<img
-							className={s.MenuImg}
-							src={blocks}
-							alt=''
-						/>
+						<img className={s.MenuImg} src={blocks} alt='' />
 					</div>
 					<div className={s.MenuBuildingMaterials}>
 						<p className={s.MenuTexts}>Строй материалы</p>
@@ -59,27 +75,15 @@ const MainPage: FC<IpropsCard> = ({ cardData }) => {
 					</div>
 					<div className={s.MenuRitualItems}>
 						<p className={s.MenuTexts}>Ритуальные изделия</p>
-						<img
-							className={s.MenuImg}
-							src={rituals}
-							alt=''
-						/>
+						<img className={s.MenuImg} src={rituals} alt='' />
 					</div>
 					<div className={s.MenuMachines}>
 						<p className={s.MenuTexts}>Станки</p>
-						<img
-							className={s.MenuImg}
-							src={Stanki}
-							alt=''
-						/>
+						<img className={s.MenuImg} src={Stanki} alt='' />
 					</div>
 					<div className={s.MenuTools}>
 						<p className={s.MenuTexts}>Инструменты</p>
-						<img
-							className={s.MenuImg}
-							src={tools}
-							alt=''
-						/>
+						<img className={s.MenuImg} src={tools} alt='' />
 					</div>
 					<div className={s.MenuSpecialEquipment}>
 						<p className={s.MenuTexts}>Спец техника</p>
@@ -91,24 +95,19 @@ const MainPage: FC<IpropsCard> = ({ cardData }) => {
 					</div>
 					<div className={s.MenuWork}>
 						<p className={s.MenuTexts}>Работа</p>
-						<img
-							className={s.MenuImg}
-							src={Work}
-							alt=''
-						/>
+						<img className={s.MenuImg} src={Work} alt='' />
 					</div>
 					<div className={s.MenuServices}>
 						<p className={s.MenuTexts}>Услуги</p>
-						<img
-							className={s.MenuImg}
-							src={serveces}
-							alt=''
-						/>
+						<img className={s.MenuImg} src={serveces} alt='' />
 					</div>
 				</div>
 				<div className={s.AdCardsDiv}>
 					<h2 className={s.H2BestPractique}>Лучшие предложения:</h2>
-					<Card cardsStyles={CardsStylesColumn} cardsAd={cardData} />
+					<Card
+						cardsStyles={CardsStylesColumn}
+						cardsAd={card_ads_1}
+					/>
 					{/* Рекламные в колонку */}
 				</div>
 			</div>
@@ -120,19 +119,14 @@ const MainPage: FC<IpropsCard> = ({ cardData }) => {
 						<Card
 							cardsStyles={CardsStyles}
 							inlineStyles={CardStyles}
-							cardsAd={cardData}
+							cardsAd={card_ads_2}
 						/>
 						<h2 className={s.H2SpecialText}>Объявления для вас</h2>
 						{/* Обычные 8 шт */}
 						<Card
 							inlineStyles={CardStyles}
 							cardsStyles={CardsStyles}
-							cardsAd={cardData}
-						/>
-						<Card
-							inlineStyles={CardStyles}
-							cardsStyles={CardsStyles}
-							cardsAd={cardData}
+							cardsAd={card_ads_1}
 						/>
 					</div>
 				</div>

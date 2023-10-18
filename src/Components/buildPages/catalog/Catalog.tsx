@@ -1,4 +1,4 @@
-import { ICard } from '../../modules/маленькая карточка/Card'
+import { CardAd } from '../mainPage/MainPage'
 import { FC, useEffect } from 'react'
 import CardMain from '../../modules/большая карточка/CardMain'
 import Card from '../../modules/маленькая карточка/Card'
@@ -8,8 +8,8 @@ import styles from './Catalog.module.css'
 interface ICatalogProps {
 	category: { name: string; id: number }[]
 	url?: string
-	cardsArray: ICard[]
-	setCardsArray: (value: ICard[]) => void
+	cardsArray: CardAd[]
+	setCardsArray: (value: CardAd[]) => void
 }
 const Catalog: FC<ICatalogProps> = ({
 
