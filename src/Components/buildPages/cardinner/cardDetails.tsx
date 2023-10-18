@@ -1,6 +1,8 @@
 import { FC, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import s from './cardDetails.module.css'
+import photo from '../../../assets/photoFromInnerCard.png'
+import greenMoney from '../../../assets/greenmoney.svg'
 interface ICardDetailsProps {
 	cardData: { title: string; price: string; info: string; id: number }[]
 }
@@ -19,20 +21,21 @@ const CardDetails: FC<ICardDetailsProps> = ({ cardData }) => {
 			return (
 				<div className={s.mainDiv}>
 					<div className={s.leftDiv}>
-						<img src='https://picsum.photos/316/323' alt='' />
+						<img src={photo} alt='' />
 					</div>
 					<div className={s.rightDiv}>
 						<h2 className={s.H2Name}>Памятник 1</h2>
-						<p className={s.Price}>
-							3900 <span>Р</span>
+						<div className={s.priceBox}>
+							<p className={s.price}>
+								3900
+							</p>
+							<img style={{marginLeft: '1rem'}} src={greenMoney} alt="" />
+						</div>
+						<p className={s.aboutHeader}>Описание:</p>
+						<p className={s.aboutText}>
+						С учётом сложившейся международной обстановки, перспективное планирование предоставляет широкие возможности для первоочередных требований с учётом сложившейся международной обстановки, перспективное планирование предоставляет широкие возможности для первоочередных требований С учётом сложившейся международной обстановки, перспективное планирование предоставляет широкие возможности для первоочередных требований С учётом сложившейся международной обстановки, перспективное планирование предоставляет широкие возможности для первоочередных требований 
 						</p>
-						<p className={s.AboutHeader}>Описание:</p>
-						<p className={s.AboutText}>
-							С учётом сложившейся международной обстановки,
-							перспективное планирование предоставляет широкие
-							возможности для первоочередных требований...
-						</p>
-						<p className={s.Organization}>ООО ХОУМ СТРОЙ</p>
+						<p className={s.organization}>ООО ХОУМ СТРОЙ</p>
 						<div
 							onClick={() => setShowNumber(!showNumber)}
 							className={s.PhoneNumberDiv}

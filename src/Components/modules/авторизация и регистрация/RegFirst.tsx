@@ -20,7 +20,7 @@ const RegFirst = (props: RegPropsFirst) => {
 	return (
 		<div className={styles.MainDivFirstPopUp}>
 			<div className={styles.innerDiv}>
-				<h2 className={styles.H2text}>Регистрация</h2>
+				<h2 style={{marginTop: '1.5rem'}} className={styles.H2text}>Регистрация</h2>
 				<form
 					onSubmit={(e) => {
 						e.preventDefault()

@@ -14,6 +14,7 @@ import Defence from './Components/buildPages/profileDefence/defence.js'
 import InfoProfile from './Components/buildPages/infoProfile/infoProfile.js'
 import MyAds from './Components/buildPages/myAds/myAds.js'
 import Worker from './Components/buildPages/worker/worker.js'
+import Moderation from './Components/buildPages/moderation/moderation.js'
 
 function App() {
 	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('')
@@ -133,6 +134,10 @@ mainPage - cardData replace to backend card any category
 						<Route
 							path='/worker/'
 							element={<Worker/>}
+							/>
+						<Route
+							path='/moderation/'
+							element={<Moderation/>}
 							/>
 					</Routes>
 				</Layout>

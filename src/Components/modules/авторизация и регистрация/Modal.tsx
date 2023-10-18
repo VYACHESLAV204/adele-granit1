@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import styles from './Modal.module.css'
+import closeIcon from '../../../assets/closeIcon.svg'
 
 interface ModalProps {
 	children: ReactNode
@@ -16,7 +17,9 @@ const Modal: React.FC<ModalProps> = ({ children, isOpen, closeModal }) => {
 		<div className={styles.Modal}>
 			<div className={styles.ModalContent}>
 				{children}
-				<button onClick={closeModal}>Закрыть</button>
+				<button className={styles.btn} onClick={closeModal}>
+					<img className={styles.closeIcon} src={closeIcon} alt="" />
+				</button>
 			</div>
 		</div>
 	)
