@@ -1,30 +1,46 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import s from './cardDetails.module.css'
 import photo from '../../../assets/photoFromInnerCard.png'
 import greenMoney from '../../../assets/greenmoney.svg'
-import { CardAdResponse } from '../mainPage/MainPage'
-const CardDetails: FC<CardAdResponse> = ({ card_ads_1 }) => {
+import { CardAd } from '../../../interfaces/Interfaces'
+import { CardAdResponse } from '../../../interfaces/Interfaces'
+const CardDetails: FC<CardAdResponse> = ({
+	card_ads_1,
+	card_ads_2,
+	card_no_ads,
+}) => {
+	const [showNumber, setShowNumber] = useState(false)
+	const [thisState, setThis] = useState<CardAd>();
 	const { id } = useParams<{ id: string }>() // Keep it as string
 	const numberId = Number(id) // convert string id to numaric id
-	const thisCardFromAd = card_ads_1.find((card) => card.id_card === numberId)
-	console.log(thisCardFromAd)
+	
+	useEffect(() => {
+		let matchedCard = card_ads_1?.find((card) => card.id_card === numberId)
+		if (!matchedCard) {
+			matchedCard = card_ads_2?.find((card) => card.id_card === numberId)
+		}
+		if (!matchedCard) {
+			matchedCard = card_no_ads?.find((card) => card.id_card === numberId)
+		}
+		setThis(matchedCard)
+	}, [card_ads_1, card_ads_2, card_no_ads, numberId])
+useEffect(() => {
+console.log(thisState)
+}, [thisState])
+const files = thisState && thisState.path_file && thisState.path_file.split(',')
 
-	//Логика если рекламные не рекламные не по ключу а в разных массивах
-	// const thisCardFromSimple = cardData.find((card) => card.id === numberId)
 
-	function returnActual() {
-		if (thisCardFromAd) {
-			const [showNumber, setShowNumber] = useState(false)
-			return (
+	return(
+		
 				<div className={s.mainDiv}>
 					<div className={s.leftDiv}>
-						<img src={photo} alt='' />
+					{files && files[0] && <img src={files[0]} alt='' className={s.Img}/>}
 					</div>
 					<div className={s.rightDiv}>
-						<h2 className={s.H2Name}>Памятник 1</h2>
+						<h2 className={s.H2Name}>{thisState?.caption}</h2>
 						<div className={s.priceBox}>
-							<p className={s.price}>3900</p>
+							<p className={s.price}>{thisState?.price}</p>
 							<img
 								style={{ marginLeft: '1rem' }}
 								src={greenMoney}
@@ -33,40 +49,33 @@ const CardDetails: FC<CardAdResponse> = ({ card_ads_1 }) => {
 						</div>
 						<p className={s.aboutHeader}>Описание:</p>
 						<p className={s.aboutText}>
-							С учётом сложившейся международной обстановки,
-							перспективное планирование предоставляет широкие
-							возможности для первоочередных требований с учётом
-							сложившейся международной обстановки, перспективное
-							планирование предоставляет широкие возможности для
-							первоочередных требований С учётом сложившейся
-							международной обстановки, перспективное планирование
-							предоставляет широкие возможности для первоочередных
-							требований С учётом сложившейся международной
-							обстановки, перспективное планирование предоставляет
-							широкие возможности для первоочередных требований
+							{thisState?.description}
 						</p>
-						<p className={s.organization}>ООО ХОУМ СТРОЙ</p>
+						<p className={s.organization}>{thisState?.username}</p>
 						<div
 							onClick={() => setShowNumber(!showNumber)}
 							className={s.PhoneNumberDiv}
 						>
 							{showNumber ? (
-								<p>+7 964 926 3214</p>
+								<p>{thisState?.phone}</p>
 							) : (
 								<p>Показать телефон</p>
 							)}{' '}
 						</div>
 						<p className={s.City}>
 							<span className={s.CitySpan}>Город:</span>
-							Санкт-петербург, Адмиралтейская
+							{thisState?.city}
 						</p>
 					</div>
 				</div>
 			)
 		}
-	}
-	return returnActual()
-}
+
+
+
+	
+	
+
 
 export default CardDetails
 //Тут внутренняя страница обьявления

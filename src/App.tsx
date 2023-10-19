@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
-import {
-	CardAd,
-	CardAdResponse,
-} from './Components/buildPages/mainPage/MainPage.js'
+import { CardAd, CardAdResponse } from './interfaces/Interfaces.js'
 import MainPage from './Components/buildPages/mainPage/MainPage.js'
 import CardDetails from './Components/buildPages/cardinner/cardDetails.js'
 import Catalog from './Components/buildPages/catalog/Catalog.js'
@@ -23,7 +20,7 @@ function App() {
 	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('')
 	const [isOpen, setIsOpen] = useState(false)
 	const [citys, setCitys] = useState([])
-	const [cardsArray, setCardsArray] = useState<CardAd[]>([])
+	const [cardsArray, setCardsArray] = useState<CardAd[] | undefined>([])
 	const [cards, setCards] = useState<CardAdResponse>()
 	const [categoryForNewCard, setCategoryForNewCard] = useState('')
 	const [underCategoryForNewCard, setUnderCategoryForNewCard] = useState('')
@@ -31,12 +28,11 @@ function App() {
 		fetch('http://31.129.105.19/api/v1/citys')
 			.then((response) => response.json())
 			.then((data) => setCitys(data.city))
-			.then((data) => console.log(data))
 			.catch((error) => console.log(error))
 
 		fetch('http://31.129.105.19/api/v1/index-page')
 			.then((responce) => responce.json())
-			.then((data) => setCards(data))
+			.then((data: CardAdResponse) => setCards(data))
 	}, [])
 	useEffect(() => {
 		console.log(categoryForNewCard, underCategoryForNewCard)
@@ -72,7 +68,6 @@ mainPage - cardData replace to backend card any category
 										card_ads_2={cards.card_ads_2}
 										card_no_ads={cards.card_no_ads}
 										status={cards.status}
-										
 									/>
 								)
 							}
@@ -80,14 +75,23 @@ mainPage - cardData replace to backend card any category
 
 						<Route
 							path='/card/:id'
-							element={<CardDetails cardData={cards} />}
+							element={cards&&
+								<CardDetails
+									card_ads_1={cards.card_ads_1 ||[]}
+									card_ads_2={cards.card_ads_2 || []}
+									card_no_ads={cards.card_no_ads || []}
+								/>
+							}
 						/>
 						<Route
 							path='/catalog/'
-							element={
+							element={cards&&
 								<Catalog
 									setCardsArray={setCardsArray}
-									category={category}
+									cardsArray={cardsArray}
+									category={categoryForNewCard}
+									sub_category={underCategoryForNewCard}
+									
 								/>
 							}
 						/>
@@ -105,35 +109,13 @@ mainPage - cardData replace to backend card any category
 							element={<Profile citys={citys} />}
 						/>
 
-						<Route
-							path='/summary/'
-							element={<Summary/>} 
-							/>
-						<Route
-							path='/settings/'
-							element={<Settings/>}
-							/>
-						<Route
-							path='/defence/'
-							element={<Defence/>}
-							/>
-						<Route
-							path='/info-profile'
-							element={<InfoProfile/>}
-							/>
-						<Route
-							path='/my-ads/'
-							element={<MyAds/>}
-							/>
-						<Route
-							path='/worker/'
-							element={<Worker/>}
-							/>
-						<Route
-							path='/moderation/'
-							element={<Moderation/>}
-							/>
-             
+						<Route path='/summary/' element={<Summary />} />
+						<Route path='/settings/' element={<Settings />} />
+						<Route path='/defence/' element={<Defence />} />
+						<Route path='/info-profile' element={<InfoProfile />} />
+						<Route path='/my-ads/' element={<MyAds />} />
+						<Route path='/worker/' element={<Worker />} />
+						<Route path='/moderation/' element={<Moderation />} />
 					</Routes>
 				</Layout>
 			</div>

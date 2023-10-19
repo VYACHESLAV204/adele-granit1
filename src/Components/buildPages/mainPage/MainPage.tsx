@@ -10,31 +10,7 @@ import serveces from '../../../assets/serveces.svg'
 import specialTequinick from '../../../assets/specialTequinick.svg'
 import tools from '../../../assets/tools.svg'
 import s from './MainPage.module.css'
-export interface CardAdResponse {
-	status: boolean
-	card_ads_1: CardAd[]
-	card_ads_2: CardAd[]
-	card_no_ads: CardAd[]
-}
-
-export interface CardAd {
-	ads: boolean
-	caption: string
-	category: string
-	city: string
-	description: string
-	email: string
-	id_card: number
-	id_user: string
-	path_file: string
-	phone: string
-	price: string
-	subcategory: string
-	tariff: string
-	telephone: string
-	telephone_two: null | string
-	username: string
-}
+import { CardAdResponse } from '../../../interfaces/Interfaces'
 const MainPage: FC<CardAdResponse> = ({
 	card_ads_1,
 	card_ads_2,
@@ -108,7 +84,7 @@ const MainPage: FC<CardAdResponse> = ({
 					<h2 className={s.H2BestPractique}>Лучшие предложения:</h2>
 					<Card
 						cardsStyles={CardsStylesColumn}
-						cardsAd={card_ads_1}
+						cardsAd={card_ads_1|| []}
 					/>
 					{/* Рекламные в колонку */}
 				</div>
@@ -121,14 +97,14 @@ const MainPage: FC<CardAdResponse> = ({
 						<Card
 							cardsStyles={CardsStyles}
 							inlineStyles={CardStyles}
-							cardsAd={card_ads_2}
+							cardsAd={card_ads_2 || []}
 						/>
 						<h2 className={s.H2SpecialText}>Объявления для вас</h2>
 						{/* Обычные 8 шт */}
 						<Card
 							inlineStyles={CardStyles}
 							cardsStyles={CardsStyles}
-							cardsAd={card_ads_1}
+							cardsAd={card_ads_1 || []}
 						/>
 					</div>
 				</div>

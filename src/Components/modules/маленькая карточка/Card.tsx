@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom'
 import styles from './card.module.css'
 import { FC } from 'react'
-import { ICard } from '../../buildPages/mainPage/MainPage'
+import { CardAd } from '../../../interfaces/Interfaces'
 
 const Card: FC<{
-	cardsAd: ICard[]
+	cardsAd?: CardAd[]
 	inlineStyles?: Record<string, string>
 	cardsStyles?: Record<string, string>
 }> = ({ cardsAd, inlineStyles, cardsStyles }) => {
 	return (
 		<div style={cardsStyles}>
-			{cardsAd.map((item) => (
+			{cardsAd?.map((item) => (
 				<Link
 					to={`/card/${item.id_card}`}
 					key={item.id_card}
@@ -18,10 +18,18 @@ const Card: FC<{
 				>
 					<div style={inlineStyles} className={styles.MainCardDiv}>
 						<div className={styles.CardImgDiv}>
-							<img
-								src='https://picsum.photos/191/177'
-								alt={item.description}
-							/>
+							{item.path_file
+								.split(',')
+								.map(
+									(item, index) =>
+										index === 0 && (
+											<img
+												src={item}
+												className={styles.CardImgDiv}
+												alt=''
+											/>
+										)
+								)}
 						</div>
 						<div className={styles.CardInfoDiv}>
 							<h3>{item.price}</h3>

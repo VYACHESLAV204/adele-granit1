@@ -4,7 +4,7 @@
 }
 .CardImgDiv {
 	width: 191px;
-	height: 177px;
+	height: 177px;object-fit: cover;
 	
 }
 .CardImgDiv > img{border-radius: 5px;}

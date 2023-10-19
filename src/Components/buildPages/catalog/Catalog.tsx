@@ -1,32 +1,36 @@
-import { CardAd } from '../mainPage/MainPage'
-import { FC, useEffect } from 'react'
+import { CardAd } from '../../../interfaces/Interfaces'
+import { FC, useEffect, useState } from 'react'
 import CardMain from '../../modules/большая карточка/CardMain'
 import Card from '../../modules/маленькая карточка/Card'
 import ColumnCardsStyles from '../mainPage/MainPage.module.css'
 import styles from './Catalog.module.css'
 
 interface ICatalogProps {
-	category: { name: string; id: number }[]
-	url?: string
+	category: string
+	sub_category: string
 	cardsArray: CardAd[]
 	setCardsArray: (value: CardAd[]) => void
 }
-const Catalog: FC<ICatalogProps> = ({
 
-	url,
+const Catalog: FC<ICatalogProps> = ({
+	category,
+	sub_category,
 	cardsArray,
 	setCardsArray,
 }) => {
+
+	const [page, setPage] = useState(1)
 	const CardsStylesColumn = {
 		display: 'flex',
 		flexDirection: 'column',
 		flexWrap: 'wrap',
 	}
+
 	useEffect(() => {
-		fetch('https://kfosdkfopsdkgopdfmokfoeko/sddfsdf/dsgsdgs/ddsge', {
+		fetch('http://31.129.105.19/api/v1/index-category', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ url }),
+			body: JSON.stringify({ category, sub_category, page }),
 		})
 			.then((data) => data.json())
 			.then((data) => {
@@ -37,6 +41,13 @@ const Catalog: FC<ICatalogProps> = ({
 				}
 			})
 	}, [])
+useEffect(() => {
+  
+	console.log(cardsArray);
+}, [cardsArray])
+
+
+
 	const Cat = [
 		'Прямоугольные',
 		'Фигурные',
