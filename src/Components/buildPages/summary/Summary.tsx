@@ -1,9 +1,19 @@
+import {useState,useEffect} from 'react'
 import s from './Summary.module.css'
 import addNew from '../../../assets/addNew.svg'
 import greenMoney from '../../../assets/greenmoney.svg'
 import photoClose from '../../../assets/photoClose.svg'
 import plus from '../../../assets/plus.svg'
+import "react-widgets/styles.css";
+import Calendar from "react-widgets/Calendar";
 const Summary = () => {
+  const [calendarValue, setCalendarValue] = useState<Date>()
+  const [calendarToggle, setCalendarToggle] = useState(false)
+  useEffect(() => {
+    console.log(calendarValue);
+
+  }, [calendarValue])
+  
   return (
     <div className={s.summaryContainer}>
       <h1 className={s.MainTitle}>Резюме</h1>
@@ -18,10 +28,10 @@ const Summary = () => {
       </div>
       <h2 className={s.pageTitle}>Параметры</h2>
       <div className={s.workCategory}>
-        <p className={s.marginRight}>Профессия</p>
+        <p style={{marginBottom: '2rem'}} className={s.marginRight}>Профессия</p>
         <div className={s.inputContainer}>
           <input className={`${s.input} ${s.inputWork}`} type="text" placeholder='Каменщик' />
-          <p className={s.inputAbout}>Поможет нам сделать поиск точнее, работадатели этого не увидят</p>
+          <p className={s.inputAbout}>Поможет нам сделать поиск точнее, работадатели этого не увидят</p> 
         </div>
       </div>
       <div className={s.workCategory}>
@@ -47,9 +57,13 @@ const Summary = () => {
       </div>
       <div className={s.dateNewborn}>
         <p className={s.marginRight}>Дата рождения</p>
-        <input className={`${s.input} ${s.inputNewborn}`} type="text" />
-        <input className={`${s.input} ${s.inputNewborn2}`} type="text" />
-        <input className={`${s.input} ${s.inputNewborn}`} type="text" />
+      {calendarToggle?<Calendar value={calendarValue} onChange={value => setCalendarValue(value)} className={s.calendarValueOn}/> : <Calendar className={s.calendarValue}></Calendar>} 
+        <input onClick={() => setCalendarToggle
+        (!calendarToggle)} className={`${s.input} ${s.inputNewborn}`} type="text" />
+        <input onClick={() => setCalendarToggle
+        (!calendarToggle)} className={`${s.input} ${s.inputNewborn2}`} type="text" />
+        <input onClick={() => setCalendarToggle
+        (!calendarToggle)} className={`${s.input} ${s.inputNewborn}`} type="text" />
       </div>
       <div className={s.genderContainer}>
         <p className={s.marginRight}>Готовность к командировкам</p>
@@ -113,21 +127,21 @@ const Summary = () => {
       
       <div className={`${s.aboutContainer} ${s.aboutStudy}`}>
         <div className={s.workCategory}>
-          <p className={s.marginRight}>Название заведения</p>
+          <p style={{marginBottom: '2rem'}} className={s.marginRight}>Название заведения</p>
           <div className={s.inputContainer}>
             <input className={`${s.input} ${s.inputWork}`} type="text" placeholder='Каменщик' />
             <p className={s.inputAbout}>Название учебного заведения</p>
           </div>
         </div>
         <div className={s.workCategory}>
-          <p className={s.marginRight}>Должность</p>
+          <p style={{marginBottom: '2rem'}} className={s.marginRight}>Должность</p>
           <div className={s.inputContainer}>
             <input className={`${s.input} ${s.inputWork}`} type="text" placeholder='Каменщик' />
             <p className={s.inputAbout}>Например “Оператор станка”</p>
           </div>
         </div>
         <div className={s.workCategory}>
-          <p className={s.marginRight}>Год окончания</p>
+          <p style={{marginBottom: '2rem'}} className={s.marginRight}>Год окончания</p>
           <div className={s.inputContainer}>
             <div>
 
@@ -178,14 +192,14 @@ const Summary = () => {
 					</div>
           <div>
 					<h4 className={s.titleTextStyle} >Фотографии</h4>
-					<p style={{textAlign: 'left'}}>Не более 5 фото</p>
+					<p style={{textAlign: 'left' , marginBottom: '1rem'}}>Не более 5 фото</p>
 					<div className={s.photoSectionContainer}>
 						<div className={`${s.photo} ${s.photoContainer}`}>
 							<img className={s.photoClose} src={photoClose} alt="" />
 						</div>
 						<div className={s.addPhotoContainer}>
 							<div className={s.plusContainer}>
-							<p>Нажмите, чтобы добавить новую фотографию</p>
+							<p style={{textAlign: 'center' , marginBottom: '1rem'}}>Нажмите, чтобы добавить новую фотографию</p>
 							<img className={s.plusPhoto} src={plus} alt="" />
 							</div>
 							<input className={s.photoInput}type="file" />
