@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import s from './cardDetails.module.css
+import s from './cardDetails.module.css'
 import photo from '../../../assets/photoFromInnerCard.png'
 import greenMoney from '../../../assets/greenmoney.svg'
 import { IpropsCard } from '../mainPage/MainPage'
