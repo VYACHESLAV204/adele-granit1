@@ -7,43 +7,21 @@ import styles from './Catalog.module.css'
 
 interface ICatalogProps {
 	category: { name: string; id: number }[]
-	url?: string
 	cardsArray: CardAd[]
-	setCardsArray: (value: CardAd[]) => void
 }
-const Catalog: FC<ICatalogProps> = ({
-
-	url,
-	cardsArray,
-	setCardsArray,
-}) => {
+const Catalog: FC<ICatalogProps> = ({ cardsArray }) => {
 	const CardsStylesColumn = {
 		display: 'flex',
 		flexDirection: 'column',
 		flexWrap: 'wrap',
 	}
-	useEffect(() => {
-		fetch('https://kfosdkfopsdkgopdfmokfoeko/sddfsdf/dsgsdgs/ddsge', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ url }),
-		})
-			.then((data) => data.json())
-			.then((data) => {
-				if (data !== null) {
-					setCardsArray(data)
-				} else {
-					setCardsArray([])
-				}
-			})
-	}, [])
+
 	const Cat = [
 		'Прямоугольные',
 		'Фигурные',
 		'Эксклюзивные',
 		'Цоколя',
 		'Плиты',
-
 		'Гранит',
 		'Мрамор',
 	]

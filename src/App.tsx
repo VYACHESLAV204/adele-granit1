@@ -60,7 +60,7 @@ function App() {
 			})
 	}, [categoryForNewCard, underCategoryForNewCard])
 
-	
+
 	return (
 		<Router>
 			<div>
@@ -86,7 +86,6 @@ mainPage - cardData replace to backend card any category
 										card_ads_2={cards.card_ads_2}
 										card_no_ads={cards.card_no_ads}
 										status={cards.status}
-										
 									/>
 								)
 							}
@@ -131,35 +130,13 @@ mainPage - cardData replace to backend card any category
 							element={<Profile citys={citys} />}
 						/>
 
-						<Route
-							path='/summary/'
-							element={<Summary/>} 
-							/>
-						<Route
-							path='/settings/'
-							element={<Settings/>}
-							/>
-						<Route
-							path='/defence/'
-							element={<Defence/>}
-							/>
-						<Route
-							path='/info-profile'
-							element={<InfoProfile/>}
-							/>
-						<Route
-							path='/my-ads/'
-							element={<MyAds/>}
-							/>
-						<Route
-							path='/worker/'
-							element={<Worker/>}
-							/>
-						<Route
-							path='/moderation/'
-							element={<Moderation/>}
-							/>
-             
+						<Route path='/summary/' element={<Summary />} />
+						<Route path='/settings/' element={<Settings />} />
+						<Route path='/defence/' element={<Defence />} />
+						<Route path='/info-profile' element={<InfoProfile />} />
+						<Route path='/my-ads/' element={<MyAds />} />
+						<Route path='/worker/' element={<Worker />} />
+						<Route path='/moderation/' element={<Moderation />} />
 					</Routes>
 				</Layout>
 			</div>
