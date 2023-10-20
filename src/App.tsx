@@ -7,7 +7,9 @@ import {
 } from './Components/buildPages/mainPage/MainPage.js'
 import MainPage from './Components/buildPages/mainPage/MainPage.js'
 import CardDetails from './Components/buildPages/cardinner/cardDetails.js'
-import Catalog from './Components/buildPages/catalog/Catalog.js'
+import Catalog, {
+	ICatalogProps,
+} from './Components/buildPages/catalog/Catalog.js'
 import Layout from './Components/buildPages/Layout.js'
 import NewCard from './Components/buildPages/newCard/NewCard.js'
 import Profile from './Components/buildPages/profileSetup/Profile.js'
@@ -23,15 +25,15 @@ function App() {
 	const [modalType, setModalType] = useState<'auth' | 'reg' | ''>('')
 	const [isOpen, setIsOpen] = useState(false)
 	const [citys, setCitys] = useState([])
-	const [cardsArray, setCardsArray] = useState<CardAd[]>([])
+	const [cardsArray, setCardsArray] = useState<ICatalogProps>()
 	const [cards, setCards] = useState<CardAdResponse>()
 	const [categoryForNewCard, setCategoryForNewCard] = useState('')
 	const [underCategoryForNewCard, setUnderCategoryForNewCard] = useState('')
+
 	useEffect(() => {
 		fetch('http://31.129.105.19/api/v1/citys')
 			.then((response) => response.json())
 			.then((data) => setCitys(data.city))
-			.then((data) => console.log(data))
 			.catch((error) => console.log(error))
 
 		fetch('http://31.129.105.19/api/v1/index-page')
@@ -40,7 +42,7 @@ function App() {
 	}, [])
 
 	useEffect(() => {
-		fetch('http://31.129.105.19/api/v1/index-category', {
+		fetch('http://192.168.0.4:6969/api/v1/index-category', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -53,13 +55,16 @@ function App() {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log('Успешный ответ:', data)
+				setCardsArray(data)
 			})
 			.catch((error) => {
 				console.error('Ошибка:', error)
 			})
 	}, [categoryForNewCard, underCategoryForNewCard])
 
+	useEffect(() => {
+		console.log(cardsArray)
+	}, [cardsArray])
 
 	return (
 		<Router>
@@ -106,12 +111,27 @@ mainPage - cardData replace to backend card any category
 						<Route
 							path='/catalog/'
 							element={
-								cards && (
+								cardsArray && (
 									<Catalog
-										setCardsArray={setCardsArray}
-										cardsArray={cardsArray}
-										category={categoryForNewCard}
-										sub_category={underCategoryForNewCard}
+										card_ads={cardsArray.card_ads}
+										card_noads={cardsArray.card_noads}
+										has_next_ads={cardsArray.has_next_ads}
+										categorys_index={cardsArray.categorys_index}
+										has_next_noads={
+											cardsArray.has_next_noads
+										}
+										page_ads={cardsArray.page_ads}
+										page_noads={cardsArray.page_noads}
+										stasus={cardsArray.stasus}
+										sub_category_all={
+											cardsArray.sub_category_all
+										}
+										total_pages_ads={
+											cardsArray.total_pages_ads
+										}
+										total_pages_noads={
+											cardsArray.total_pages_noads
+										}
 									/>
 								)
 							}
