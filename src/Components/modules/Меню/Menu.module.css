@@ -137,7 +137,8 @@
 	padding: 0px;
 	align-items: flex-start;
 }
-.InnerLiVisible > li {
+
+.Link {
 	color: #212121;
 	text-align: center;
 	font-family: Inter;

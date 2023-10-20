@@ -38,15 +38,29 @@ function App() {
 			.then((responce) => responce.json())
 			.then((data) => setCards(data))
 	}, [])
-	useEffect(() => {
-		console.log(categoryForNewCard, underCategoryForNewCard)
-	}, [categoryForNewCard, underCategoryForNewCard])
-	//Категории и кард дата надо удалить
-	const category = [
-		{ name: 'Блоки', id: 1 },
-		{ name: 'Ритуальные услуги', id: 2 },
-	]
 
+	useEffect(() => {
+		fetch('http://31.129.105.19/api/v1/index-category', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				category: categoryForNewCard,
+				sub_category: underCategoryForNewCard,
+				page: 1,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log('Успешный ответ:', data)
+			})
+			.catch((error) => {
+				console.error('Ошибка:', error)
+			})
+	}, [categoryForNewCard, underCategoryForNewCard])
+
+	
 	return (
 		<Router>
 			<div>
@@ -80,15 +94,27 @@ mainPage - cardData replace to backend card any category
 
 						<Route
 							path='/card/:id'
-							element={<CardDetails cardData={cards} />}
+							element={
+								cards && (
+									<CardDetails
+										card_ads_1={cards.card_ads_1 || []}
+										card_ads_2={cards.card_ads_2 || []}
+										card_no_ads={cards.card_no_ads || []}
+									/>
+								)
+							}
 						/>
 						<Route
 							path='/catalog/'
 							element={
-								<Catalog
-									setCardsArray={setCardsArray}
-									category={category}
-								/>
+								cards && (
+									<Catalog
+										setCardsArray={setCardsArray}
+										cardsArray={cardsArray}
+										category={categoryForNewCard}
+										sub_category={underCategoryForNewCard}
+									/>
+								)
 							}
 						/>
 						<Route

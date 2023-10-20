@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import s from './Menu.module.css'
 import MenuArrow from '../../../assets/Menu arrow.svg'
+import { NavLink } from 'react-router-dom'
 
 interface MenuProps {
 	BurgerisOpen: boolean
@@ -155,38 +156,60 @@ const Menu: React.FC<MenuProps> = ({
 												: s.InnerLiHidden
 										}
 									>
-										<li
-											onClick={() => {
-												setUnderCategory('Гранит'),
-													setCategory('Блоки')
-											}}
+										<NavLink
+											className={s.Link}
+											to={'/catalog/'}
 										>
-											Гранит
-										</li>
-										<li
-											onClick={() => {
-												setUnderCategory('Мрамор'),
-													setCategory('Блоки')
-											}}
+											<li
+												onClick={() => {
+													setUnderCategory('Гранит'),
+														setCategory('Блоки')
+												}}
+											>
+												Гранит
+											</li>
+										</NavLink>
+										<NavLink
+											className={s.Link}
+											to={'/catalog/'}
 										>
-											Мрамор
-										</li>
-										<li
-											onClick={() => {
-												setUnderCategory('Покупают'),
-													setCategory('Блоки')
-											}}
+											<li
+												onClick={() => {
+													setUnderCategory('Мрамор'),
+														setCategory('Блоки')
+												}}
+											>
+												Мрамор
+											</li>
+										</NavLink>
+										<NavLink
+											className={s.Link}
+											to={'/catalog/'}
 										>
-											Покупают
-										</li>
-										<li
-											onClick={() => {
-												setUnderCategory('Продают'),
-													setCategory('Блоки')
-											}}
+											<li
+												onClick={() => {
+													setUnderCategory(
+														'Покупают'
+													),
+														setCategory('Блоки')
+												}}
+											>
+												Покупают
+											</li>
+										</NavLink>
+										<NavLink
+											className={s.Link}
+											to={'/catalog/'}
 										>
-											Продают
-										</li>
+											<li
+												onClick={() => {
+													setUnderCategory('Продают'),
+														setCategory('Блоки')
+												}}
+											>
+												Продают
+											</li>
+										</NavLink>
 									</ul>
 								</div>
 							</ul>
@@ -234,38 +257,66 @@ const Menu: React.FC<MenuProps> = ({
 											: s.InnerLiHidden
 									}
 								>
-									<li
-										onClick={() => {
-											setUnderCategory('Гранит'),
-												setCategory('Строй материалы')
-										}}
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Гранит
-									</li>
-									<li
-										onClick={() => {
-											setUnderCategory('Мрамор'),
-												setCategory('Строй материалы')
-										}}
+										<li
+											onClick={() => {
+												setUnderCategory('Гранит'),
+													setCategory(
+														'Строй материалы'
+													)
+											}}
+										>
+											Гранит
+										</li>
+									</NavLink>
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Мрамор
-									</li>
-									<li
-										onClick={() => {
-											setUnderCategory('Покупают'),
-												setCategory('Строй материалы')
-										}}
+										<li
+											onClick={() => {
+												setUnderCategory('Мрамор'),
+													setCategory(
+														'Строй материалы'
+													)
+											}}
+										>
+											Мрамор
+										</li>
+									</NavLink>
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Покупают
-									</li>
-									<li
-										onClick={() => {
-											setUnderCategory('Продают'),
-												setCategory('Строй материалы')
-										}}
+										<li
+											onClick={() => {
+												setUnderCategory('Покупают'),
+													setCategory(
+														'Строй материалы'
+													)
+											}}
+										>
+											Покупают
+										</li>
+									</NavLink>
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Продают
-									</li>
+										<li
+											onClick={() => {
+												setUnderCategory('Продают'),
+													setCategory(
+														'Строй материалы'
+													)
+											}}
+										>
+											Продают
+										</li>
+									</NavLink>
 								</ul>
 							</ul>
 						</li>
@@ -306,76 +357,115 @@ const Menu: React.FC<MenuProps> = ({
 											: s.InnerLiHidden
 									}
 								>
-									<li
-										onClick={() => {
-											setUnderCategory('Прямоугольные'),
-												setCategory(
-													'Ритуальные изделия'
-												)
-										}}
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Прямоугольные
-									</li>
-									<li
-										onClick={() => {
-											setUnderCategory('Фигурные'),
-												setCategory(
-													'Ритуальные изделия'
-												)
-										}}
+										<li
+											onClick={() => {
+												setUnderCategory(
+													'Прямоугольные'
+												),
+													setCategory(
+														'Ритуальные изделия'
+													)
+											}}
+										>
+											Прямоугольные
+										</li>
+									</NavLink>
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Фигурные
-									</li>
-									<li
-										onClick={() => {
-											setUnderCategory('Эксклюзивные'),
-												setCategory(
-													'Ритуальные изделия'
-												)
-										}}
+										<li
+											onClick={() => {
+												setUnderCategory('Фигурные'),
+													setCategory(
+														'Ритуальные изделия'
+													)
+											}}
+										>
+											Фигурные
+										</li>
+									</NavLink>
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Эксклюзивные
-									</li>
-									<li
-										onClick={() => {
-											setUnderCategory('Цоколя'),
-												setCategory(
-													'Ритуальные изделия'
-												)
-										}}
+										<li
+											onClick={() => {
+												setUnderCategory(
+													'Эксклюзивные'
+												),
+													setCategory(
+														'Ритуальные изделия'
+													)
+											}}
+										>
+											Эксклюзивные
+										</li>
+									</NavLink>
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Цоколя
-									</li>
-									<li
-										onClick={() => {
-											setUnderCategory('Плиты'),
-												setCategory(
-													'Ритуальные изделия'
-												)
-										}}
+										<li
+											onClick={() => {
+												setUnderCategory('Цоколя'),
+													setCategory(
+														'Ритуальные изделия'
+													)
+											}}
+										>
+											Цоколя
+										</li>
+									</NavLink>
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Плиты
-									</li>
-									<li
-										onClick={() => {
-											setUnderCategory('Гранит'),
-												setCategory(
-													'Ритуальные изделия'
-												)
-										}}
+										<li
+											onClick={() => {
+												setUnderCategory('Плиты'),
+													setCategory(
+														'Ритуальные изделия'
+													)
+											}}
+										>
+											Плиты
+										</li>
+									</NavLink>
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Гранит
-									</li>
-									<li
-										onClick={() => {
-											setUnderCategory('Мрамор'),
-												setCategory(
-													'Ритуальные изделия'
-												)
-										}}
+										<li
+											onClick={() => {
+												setUnderCategory('Гранит'),
+													setCategory(
+														'Ритуальные изделия'
+													)
+											}}
+										>
+											Гранит
+										</li>
+									</NavLink>
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Мрамор
-									</li>
+										<li
+											onClick={() => {
+												setUnderCategory('Мрамор'),
+													setCategory(
+														'Ритуальные изделия'
+													)
+											}}
+										>
+											Мрамор
+										</li>
+									</NavLink>
 								</ul>
 							</ul>
 						</li>
@@ -416,24 +506,34 @@ const Menu: React.FC<MenuProps> = ({
 											: s.InnerLiHidden
 									}
 								>
-									<li
-										onClick={() => {
-											setUnderCategory('Для карьера'),
-												setCategory('Станки')
-										}}
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Для карьера
-									</li>
-									<li
-										onClick={() => {
-											setUnderCategory(
-												'Для производства'
-											),
-												setCategory('Станки')
-										}}
+										<li
+											onClick={() => {
+												setUnderCategory('Для карьера'),
+													setCategory('Станки')
+											}}
+										>
+											Для карьера
+										</li>
+									</NavLink>
+									<NavLink
+										className={s.Link}
+										to={'/catalog/'}
 									>
-										Для производства
-									</li>
+										<li
+											onClick={() => {
+												setUnderCategory(
+													'Для производства'
+												),
+													setCategory('Станки')
+											}}
+										>
+											Для производства
+										</li>
+									</NavLink>
 								</ul>
 							</ul>
 						</li>
