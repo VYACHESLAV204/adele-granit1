@@ -77,12 +77,7 @@ const Catalog: FC<ICatalogProps> = ({
 						})}
 					</div>
 					<div style={{ marginTop: 15 }}>
-						<CardMain />
-						<CardMain />
-						<CardMain />
-						<CardMain />
-						<CardMain />
-						<CardMain />
+						<CardMain Cards={card_ads} />
 					</div>
 				</div>
 				<div

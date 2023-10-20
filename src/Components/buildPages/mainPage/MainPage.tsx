@@ -1,5 +1,5 @@
 import Card from '../../modules/маленькая карточка/Card'
-import { FC } from 'react'
+import { FC,useEffect } from 'react'
 import BuldingMaterials from '../../../assets/BuldingMaterials.svg'
 import Stanki from '../../../assets/Stanki.svg'
 import Work from '../../../assets/Work.svg'
@@ -11,10 +11,11 @@ import specialTequinick from '../../../assets/specialTequinick.svg'
 import tools from '../../../assets/tools.svg'
 import s from './MainPage.module.css'
 export interface CardAdResponse {
-	status: boolean
+	status?: boolean
 	card_ads_1: CardAd[]
 	card_ads_2: CardAd[]
-	card_no_ads: CardAd[]
+	card_no_ads_1: CardAd[]
+	card_no_ads_2: CardAd[]
 }
 
 export interface CardAd {
@@ -26,7 +27,7 @@ export interface CardAd {
 	email: string
 	id_card: number
 	id_user: string
-	path_file: string
+	path_file: string[]
 	phone: string
 	price: string
 	subcategory: string
@@ -38,9 +39,14 @@ export interface CardAd {
 const MainPage: FC<CardAdResponse> = ({
 	card_ads_1,
 	card_ads_2,
-	card_no_ads,
+	card_no_ads_1,
+	card_no_ads_2,
 }) => {
 	// 2 по 4 рек и 2 по 4 обычных на страницу
+useEffect(() => {
+  console.log(card_ads_1,card_ads_2,card_no_ads_1,card_no_ads_2);
+  
+}, [])
 
 	const CardStyles = {
 		marginRight: '10px',
@@ -124,11 +130,15 @@ const MainPage: FC<CardAdResponse> = ({
 							cardsAd={card_ads_2}
 						/>
 						<h2 className={s.H2SpecialText}>Объявления для вас</h2>
-						{/* Обычные 8 шт */}
 						<Card
 							inlineStyles={CardStyles}
 							cardsStyles={CardsStyles}
-							cardsAd={card_ads_1}
+							cardsAd={card_no_ads_1}
+						/>
+						<Card
+							inlineStyles={CardStyles}
+							cardsStyles={CardsStyles}
+							cardsAd={card_no_ads_2}
 						/>
 					</div>
 				</div>

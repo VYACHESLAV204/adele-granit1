@@ -5,9 +5,10 @@
 .CardImgDiv {
 	width: 191px;
 	height: 177px;
-	
 }
-.CardImgDiv > img{border-radius: 5px;}
+.CardImgDiv > img {
+	border-radius: 5px;
+}
 .CardInfoDiv {
 	height: 122px;
 	width: 191px;
@@ -44,4 +45,9 @@
 	font-weight: 400;
 	line-height: normal;
 	margin: 0;
+}
+.IMG {
+	object-fit: cover;
+	width: 191px;
+	height: 177px;
 }

@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
-import {
-	CardAd,
-	CardAdResponse,
-} from './Components/buildPages/mainPage/MainPage.js'
+import { CardAdResponse } from './Components/buildPages/mainPage/MainPage.js'
 import MainPage from './Components/buildPages/mainPage/MainPage.js'
 import CardDetails from './Components/buildPages/cardinner/cardDetails.js'
 import Catalog, {
@@ -36,7 +33,7 @@ function App() {
 			.then((data) => setCitys(data.city))
 			.catch((error) => console.log(error))
 
-		fetch('http://31.129.105.19/api/v1/index-page')
+		fetch('http://192.168.0.4:6969/api/v1/index-page')
 			.then((responce) => responce.json())
 			.then((data) => setCards(data))
 	}, [])
@@ -78,9 +75,6 @@ function App() {
 					setCategory={setCategoryForNewCard}
 					setUnderCategory={setUnderCategoryForNewCard}
 				>
-					{/* layout - ok
-mainPage - cardData replace to backend card any category 
-*/}
 					<Routes>
 						<Route
 							path='/'
@@ -89,7 +83,8 @@ mainPage - cardData replace to backend card any category
 									<MainPage
 										card_ads_1={cards.card_ads_1}
 										card_ads_2={cards.card_ads_2}
-										card_no_ads={cards.card_no_ads}
+										card_no_ads_1={cards.card_no_ads_1}
+										card_no_ads_2={cards.card_no_ads_2}
 										status={cards.status}
 									/>
 								)
@@ -103,7 +98,12 @@ mainPage - cardData replace to backend card any category
 									<CardDetails
 										card_ads_1={cards.card_ads_1 || []}
 										card_ads_2={cards.card_ads_2 || []}
-										card_no_ads={cards.card_no_ads || []}
+										card_no_ads_1={
+											cards.card_no_ads_1 || []
+										}
+										card_no_ads_2={
+											cards.card_no_ads_2 || []
+										}
 									/>
 								)
 							}
@@ -116,7 +116,9 @@ mainPage - cardData replace to backend card any category
 										card_ads={cardsArray.card_ads}
 										card_noads={cardsArray.card_noads}
 										has_next_ads={cardsArray.has_next_ads}
-										categorys_index={cardsArray.categorys_index}
+										categorys_index={
+											cardsArray.categorys_index
+										}
 										has_next_noads={
 											cardsArray.has_next_noads
 										}

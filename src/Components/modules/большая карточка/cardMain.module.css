@@ -113,3 +113,8 @@
 	font-weight: 600;
 	line-height: normal;
 }
+.IMG {
+	width: 316px;
+	height: 323px;
+	object-fit: cover;
+}

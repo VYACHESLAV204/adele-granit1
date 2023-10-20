@@ -23,7 +23,8 @@ const Card: FC<{
 						>
 							<div className={styles.CardImgDiv}>
 								<img
-									src='https://picsum.photos/191/177'
+									className={styles.IMG}
+									src={item.path_file[0]}
 									alt={item.description}
 								/>
 							</div>
@@ -32,7 +33,7 @@ const Card: FC<{
 								<p className={styles.CardInfoDivPrice}>
 									{item.price}
 								</p>
-								<p>{item.price}</p>
+								<p>{item.city}</p>
 							</div>
 						</div>
 					</Link>
